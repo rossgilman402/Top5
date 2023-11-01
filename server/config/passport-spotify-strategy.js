@@ -1,8 +1,8 @@
 const passport = require("passport");
 const spotifyStrategy = require("passport-spotify").Strategy;
-const crypto = require("crypto");
-const User = require("../models/user");
-const env = require("./environment");
+//const crypto = require("crypto");
+const User = require("../models/User");
+
 // const SpotifyWebAPI = require("spotify-web-api-node");
 passport.use(
 	new spotifyStrategy(
@@ -28,7 +28,7 @@ passport.use(
 					password: crypto.randomBytes(20).toString("hex"),
 					avatar: profile?.photos[0]?.value
 						? profile.photos[0].value
-						: "https://raw.githubusercontent.com/Ayush-Kanduri/Social-Book_Social_Media_Website/master/assets/images/empty-avatar.png",
+						: "https://avatars.githubusercontent.com/u/142236345?s=400&v=4",
 				});
 				return done(null, user);
 			} catch (error) {
@@ -39,3 +39,5 @@ passport.use(
 		}
 	)
 );
+
+module.exports = passport;
