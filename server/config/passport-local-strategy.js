@@ -35,3 +35,13 @@ passport.checkAuthentication = (req, res, next) => {
 	}
 	return res.redirect("/users/login");
 };
+
+
+passport.setAuthenticatedUser = (req, res, next) => {
+	if (req.isAuthenticated()) {
+		res.locals.user = req.user;
+	}
+	next();
+};
+
+module.exports = passport;
