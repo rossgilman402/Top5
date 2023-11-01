@@ -3,8 +3,8 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const passportLocal = require("./config/passport-local-strategy");
-const passportSpotify = require("./config/passport-spotify-strategy");
+// const passportLocal = require("./config/passport-local-strategy");
+// const passportSpotify = require("./config/passport-spotify-strategy");
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -21,11 +21,9 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(passport.session());
-
- 
+  // app.use(passport.initialize());
+  // app.use(passport.session());
+  // app.use(passport.session());
 
   app.use(
     '/graphql',

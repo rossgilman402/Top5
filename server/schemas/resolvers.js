@@ -1,5 +1,5 @@
-const { User } = require("../models");
-const { signToken, AuthenticationError } = "../utils/auth.js";
+const { User } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth.js');
 
 const resolvers = {
   Query: {
@@ -11,14 +11,15 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { email, password }) => {
+      console.log(email);
+      const user = await User.create({ email, password });
       const token = signToken(user);
       return { token, user };
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      console.log(user);
       if (!user) {
         throw AuthenticationError;
       }
