@@ -23,12 +23,12 @@ passport.use(
 					return done(null, user);
 				}
 				user = await User.create({
-					name: profile.displayName,
+					//name: profile.displayName,
 					email: profile.emails[0].value,
 					password: crypto.randomBytes(20).toString("hex"),
-					avatar: profile?.photos[0]?.value
-						? profile.photos[0].value
-						: "https://avatars.githubusercontent.com/u/142236345?s=400&v=4",
+					//avatar: profile?.photos[0]?.value
+						//? profile.photos[0].value
+						//: "https://avatars.githubusercontent.com/u/142236345?s=400&v=4",
 				});
 				return done(null, user);
 			} catch (error) {
