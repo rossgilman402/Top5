@@ -1,12 +1,15 @@
 const { User } = require('../models');
+const { signToken, AuthenticationError } = '../utils/auth.js';
 
 const resolvers = {
   Query: {
     getUsers: async () => {
-      return User.findAll({});
+      return User.find({});
     },
-    getSingleUser: async (_, { id }) => {
-      return User.findById({ id });
+    getSingleUser: async (_, { userId }) => {
+      return User.findOne({ _id: userId });
     },
   },
 };
+
+module.exports = resolvers;
