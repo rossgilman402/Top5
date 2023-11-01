@@ -6,18 +6,13 @@ const typeDefs = `
     }
 
     type Query {
-        getUser: User
+        getUsers: [User]
+        getUser(_id: ID!): User
     }
 
     type Mutation {
         addUser(email: String!, password: String!): User
     }
-
-
-
-
-
-
 `;
 
 module.exports = typeDefs;
