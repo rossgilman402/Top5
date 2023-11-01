@@ -24,3 +24,14 @@ passport.use(
 passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
+
+//--------------------//
+//Creating Middlewares//
+//--------------------//
+
+passport.checkAuthentication = (req, res, next) => {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	return res.redirect("/users/login");
+};
