@@ -1,5 +1,4 @@
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 
 import {
   ApolloClient,
@@ -8,7 +7,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import Auth from "./utils/auth";
 import { Outlet } from "react-router-dom";
 
 const httpLink = createHttpLink({
