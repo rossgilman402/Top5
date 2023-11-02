@@ -1,12 +1,11 @@
-import AddedSong from "../components/AddedSong/AddedSong";
 import PlaylistNameImage from "../components/PlaylistNameImage/PlaylistNameImage";
-import AddedSong from "../components/AddedSong/AddedSong";
+import SongList from "../components/SongList/SongList";
 
 const MakePlaylist = () => {
   return (
     <div>
       <PlaylistNameImage />
-      <AddedSong />
+      <SongList />
     </div>
   );
 };
