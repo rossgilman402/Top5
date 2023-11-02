@@ -1,9 +1,10 @@
-import PlayList from '../components/PlayList';
+import Navbar from '../components/Navbar/Navbar';
+import PlayList from '../components/PlayList/index.js';
 const Home = () => {
   return (
     <div>
-      <div>Home</div>
-      <PlayList />
+      <Navbar />
+      Home
     </div>
   );
 };
