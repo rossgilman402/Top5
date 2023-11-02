@@ -10,20 +10,20 @@ body {
   color: white;
 }
 
-.login-container {
+.signup-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.login-container img {
+.signup-container img {
   height: 200px;
   width: auto;
   margin: 30px;
 }
 
-.login-container input {
+.signup-container input {
   height: 25px;
   width: 250px;
   padding: 10px;
@@ -33,7 +33,7 @@ body {
   color: white;
 }
 
-.login-container form {
+.signup-container form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,36 +58,7 @@ body {
   padding: 12px 75px;
 }
 
-.login-container p {
-  color: lightgrey;
-}
-
-.login-container a {
-  color: white;
-}
-
-.extra-signup {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.extra-signup button {
-  border: none;
-  cursor: pointer;
-  appearance: none;
-  background-color: inherit;
-  gap: 20px;
-}
-
-.extra-signup img {
-  width: 50px;
-  height: auto;
-}
-
 .goback {
-  margin-bottom: 10px;
+  margin: 10px 0;
+  color: white;
 }

@@ -61,6 +61,7 @@ const Login = (props) => {
               placeholder="Email"
               name="email"
               type="email"
+              id="email"
               value={formState.email}
               onChange={handleChange}
             />
@@ -70,6 +71,7 @@ const Login = (props) => {
               placeholder="**********"
               name="password"
               type="password"
+              id="password"
               value={formState.password}
               onChange={handleChange}
             />
@@ -81,7 +83,8 @@ const Login = (props) => {
             <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
           )}
           <p>
-            Don&apos;t have an account? <a href="#">Sign up for Top5</a>
+            Don&apos;t have an account?{" "}
+            <Link to="/Signup">Sign up for Top5</Link>
           </p>
           <p>Or sign in with</p>
           <div className="extra-signup">
