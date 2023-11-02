@@ -2,10 +2,13 @@ const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const crypto = require("crypto");
 const User = require("../models/User");
+const { log } = require("console");
+
 require('dotenv').config();
+const env = process.env;
 
-const env = require('./path_to_your_env_file'); // Import your environment variables
-
+ // Import your environment variables
+console.log(env);
 passport.use(
     new SpotifyStrategy(
         {
