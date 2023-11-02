@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './PlayList.css';
 const PlayList = ({}) => {
   const songs = [
     'Good Song',
@@ -9,18 +10,26 @@ const PlayList = ({}) => {
     'Bad Song',
   ];
   return (
-    <div className="playlist">
-      {songs.map((song, index) => (
-        <div key={index} className="song">
-          <Link to={`playlist-page`}> </Link>
-          {/* <img src={song.artworkUrl} alt={song.name} /> */}
-          <div className="song-info">
-            <h4>{song}</h4>
-            <p>song.artist</p>
+    <container className="playlist-card">
+      <div className="playlist">
+        <h1>Playlist Name</h1>
+        <img
+          className="playlist-img"
+          src="https://via.placeholder.com/150"
+          alt="playlist"
+        />
+        {songs.map((song, index) => (
+          <div key={index} className="details">
+            <Link to={`playlist-page`}> </Link>
+            {/* <img src={song.artworkUrl} alt={song.name} /> */}
+            <div className="song-info">
+              <h4 className="song">{song}</h4>
+              <p className="artist">song.artist</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </container>
   );
 };
 
