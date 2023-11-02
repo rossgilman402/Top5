@@ -4,7 +4,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
+import Login from "./pages/Login/Login.jsx";
+import MakePlaylist from "./pages/MakePlaylist";
+import SinglePlaylist from "./pages/SinglePlaylist";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/makeplaylist",
+        element: <MakePlaylist />,
+      },
+      {
+        path: "/playlist/:name",
+        element: <SinglePlaylist />,
       },
     ],
   },
