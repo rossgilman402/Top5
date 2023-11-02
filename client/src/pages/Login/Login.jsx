@@ -13,7 +13,9 @@ const Login = () => {
         <p>
           Don&apos;t have an account? <a href="#">Sign up for Spotify</a>
         </p>
-        <Link to="/Home">Go Back</Link>
+        <Link className="goback" to="/">
+          Go Back
+        </Link>
       </div>
     </div>
   );

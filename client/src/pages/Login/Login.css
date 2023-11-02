@@ -34,6 +34,12 @@ button {
   background-color: #1ed760;
   color: black;
   margin: 10px 0 20px 0;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: black;
+  color: #1ed760;
 }
 
 .login-container p {
