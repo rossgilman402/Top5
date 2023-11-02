@@ -1,0 +1,45 @@
+body {
+  background-color: rgb(32, 26, 26);
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-container img {
+  height: 200px;
+  width: auto;
+  margin: 30px;
+}
+
+.login-container h3 {
+  color: lightgrey;
+}
+
+button {
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  background-color: #1ed760;
+  color: black;
+  margin: 10px 0 20px 0;
+}
+
+.login-container p {
+  color: lightgrey;
+}
+
+.login-container a {
+  color: white;
+}
