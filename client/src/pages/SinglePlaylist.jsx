@@ -1,5 +1,10 @@
+import PlayList from '../components/PlayList/index';
 const SinglePlaylist = () => {
-  return <div>Singular Playlist</div>;
+  return (
+    <div>
+      <PlayList />
+    </div>
+  );
 };
 
 export default SinglePlaylist;
