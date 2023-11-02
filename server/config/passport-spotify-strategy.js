@@ -28,13 +28,13 @@ passport.use(
                 user = await User.create({
                     email: profile.emails[0].value,
                     password: crypto.randomBytes(20).toString("hex"),
-                    // Add other user fields as necessary
+                 
                 });
 
                 return done(null, user);
             } catch (error) {
                 console.error(error);
-                // Handle the error appropriately
+             
                 return done(error);
             }
         }
