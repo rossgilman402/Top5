@@ -25,7 +25,8 @@ const startApolloServer = async () => {
   app.use(passport.session());
   app.use(passport.session());
 
- 
+  require('dotenv').config();
+
 
   app.use(
     '/graphql',
