@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 const PlayList = ({}) => {
   const songs = [
     'Good Song',
@@ -10,6 +11,7 @@ const PlayList = ({}) => {
     <div className="playlist">
       {songs.map((song, index) => (
         <div key={index} className="song">
+          <Link to={`playlist-page`}> </Link>
           {/* <img src={song.artworkUrl} alt={song.name} /> */}
           <div className="song-info">
             <h4>{song}</h4>
