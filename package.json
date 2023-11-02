@@ -15,5 +15,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   }
 }
