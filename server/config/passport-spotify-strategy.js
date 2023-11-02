@@ -8,7 +8,7 @@ require('dotenv').config();
 const env = process.env;
 
  // Import your environment variables
-console.log(env);
+
 passport.use(
     new SpotifyStrategy(
         {
