@@ -1,25 +1,36 @@
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="nav-container">
       <h1>Top5</h1>
-      <ul>
+      <ul className="list-container">
         <li>
-          <Link to="/home">Home</Link>
+          <Link className="link" to="/home">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/Playlists">PlayLists</Link>
+          <Link className="link" to="/Playlists">
+            PlayLists
+          </Link>
         </li>
         <li>
-          <Link to="/Profile">Profile</Link>
+          <Link className="link" to="/Profile">
+            Profile
+          </Link>
         </li>
         <li>
           {Auth.loggedIn() ? (
-            <Link to="/logout">Logout</Link>
+            <Link className="login-logout" to="/logout">
+              Logout
+            </Link>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link className="login-logout" to="/login">
+              Login
+            </Link>
           )}
         </li>
       </ul>

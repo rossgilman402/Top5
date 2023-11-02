@@ -1,7 +1,5 @@
 import "./App.css";
-// const Login = require('../src/pages/Login');
-import Login from "./pages/Login";
-import Navbar from "./components/Navbar/Navbar";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,7 +7,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import Auth from "./utils/auth";
 import { Outlet } from "react-router-dom";
 
 const httpLink = createHttpLink({
@@ -35,10 +32,7 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <Navbar />
         <Outlet />
-        <h1>Welcome to Top5</h1>
-        {Auth.loggedIn() && <h2>Logged In!</h2>}
       </ApolloProvider>
     </>
   );
