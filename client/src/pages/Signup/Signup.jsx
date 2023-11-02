@@ -29,11 +29,13 @@ const Signup = () => {
     console.log(formState);
 
     try {
-      const { data } = await addUser({
+      console.log("HERE");
+      const result = await addUser({
         variables: { ...formState },
       });
+      console.log(result);
 
-      Auth.login(data.addUser.token);
+      Auth.login(result.data.addUser.token);
     } catch (e) {
       console.error(e);
     }
