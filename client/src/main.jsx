@@ -1,16 +1,16 @@
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login/Login.jsx";
-import MakePlaylist from "./pages/MakePlaylist";
-import SinglePlaylist from "./pages/SinglePlaylist";
+import Home from './pages/Home.jsx';
+import Login from './pages/Login/Login.jsx';
+import MakePlaylist from './pages/MakePlaylist';
+import SinglePlaylist from './pages/SinglePlaylist';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -18,21 +18,21 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <Login />,
       },
       {
-        path: "/makeplaylist",
+        path: '/makeplaylist',
         element: <MakePlaylist />,
       },
       {
-        path: "/playlist/:name",
+        path: '/playlist',
         element: <SinglePlaylist />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 );
