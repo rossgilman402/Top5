@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_PLAYLIST } from '../../utils/mutations';
 import AddedSong from '../../components/AddedSong/AddedSong';
 import Navbar from '../../components/Navbar/Navbar';
 import './MakePlaylist.css';
@@ -7,6 +9,29 @@ const MakePlaylist = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
+  const [playlistName, setPlaylistName] = useState('');
+  const [playlist, { err }] = useMutation(ADD_PLAYLIST);
+
+  const handleCreatePlaylistWithSong = async (e) => {
+    e.preventDefault();
+    //We need to take all data and enter into db
+    //get user token from local storage
+    //create a playlist for that user
+    //pass in our list of songs
+    try {
+      const newSongArray = [];
+      for (const song of selectedSongs) {
+        newSongArray.push({ name: song.name, uri: song.uri });
+      }
+      console.log(newSongArray);
+      const mutationResponse = await playlist({
+        varibles: { name: playlistName, songs: newSongArray },
+      });
+      console.log(mutationResponse);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (searchQuery === '') {
@@ -64,6 +89,7 @@ const MakePlaylist = () => {
 
   const handleSongClick = (song) => {
     // Check if the song is not already in selectedSongs and the playlist has fewer than 5 songs
+    console.log(song);
     if (
       !selectedSongs.some((selected) => selected.id === song.id) &&
       selectedSongs.length < 5
@@ -83,12 +109,29 @@ const MakePlaylist = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleChange = (e) => {
+    setPlaylistName(e.target.value);
+  };
+
   return (
     <div>
       <Navbar />
       <div className="make-playlist-container">
         <div className="search-container">
           <h2 className="search-title">Search for Songs</h2>
+          <div>
+            <h2>Create Playlist</h2>
+            <label htmlFor="playlistName">Playlist Name:</label>
+            <input
+              type="text"
+              placeholder="Name"
+              id="playlistName"
+              value={playlistName}
+              onChange={handleChange}
+            />
+          </div>
+
+          <h2>Search for Songs</h2>
           <input
             className="search-input"
             type="text"
@@ -122,6 +165,14 @@ const MakePlaylist = () => {
               />
             ))}
           </ul>
+          <button
+            onClick={handleCreatePlaylistWithSong}
+            className="btn"
+            style={{ cursor: 'pointer' }}
+            type="submit"
+          >
+            Submit Playlist Name with Desired Songs
+          </button>
         </div>
       </div>
     </div>

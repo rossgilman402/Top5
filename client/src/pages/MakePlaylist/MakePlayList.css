@@ -268,3 +268,7 @@ html {
 .search-title {
   margin: 10px;
 }
+
+.search-list-container {
+  overflow-y: scroll;
+}

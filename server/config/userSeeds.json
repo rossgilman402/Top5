@@ -1,0 +1,18 @@
+[
+  {
+    "email": "slayqueen@gmail.com",
+    "password": "password",
+    "playlists": [
+      {
+        "name": "5 nights at freddys",
+        "user": 1,
+        "songs": [
+          {
+            "name": "don't stop bleeding",
+            "uri": "some uri"
+          }
+        ]
+      }
+    ]
+  }
+]
