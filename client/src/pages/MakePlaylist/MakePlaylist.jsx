@@ -88,8 +88,9 @@ const MakePlaylist = () => {
       <Navbar />
       <div className="make-playlist-container">
         <div className="search-container">
-          <h2>Search for Songs</h2>
+          <h2 className="search-title">Search for Songs</h2>
           <input
+            className="search-input"
             type="text"
             placeholder="Search for a song..."
             value={searchQuery}
