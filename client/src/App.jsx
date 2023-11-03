@@ -1,6 +1,5 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,7 +7,11 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SpotifyPlayer from './components/SpotifyPlayer'; // Import your SpotifyPlayer component
+import HomePage from './pages/HomePage'; // Import your HomePage component
+import OtherPage from './pages/OtherPage'; // Import your OtherPage component
+// ... import other components and pages ...
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -31,6 +34,7 @@ const client = new ApolloClient({
 
 function App() {
   const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null); // State to store the Spotify access token
 
   useEffect(() => {
     const getUser = () => {
@@ -43,30 +47,47 @@ function App() {
           "Access-Control-Allow-Credentials": true,
         },
       })
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json();
-          }
-          throw new Error("Authentication has failed!!");
-        })
-        .then((data) => {
-          setUser(data.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        throw new Error("Authentication has failed!!");
+      })
+      .then((data) => {
+        setUser(data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     };
+
+    const getSpotifyAccessToken = async () => {
+      // ... Spotify access token logic ...
+    };
+
     getUser();
+    getSpotifyAccessToken();
   }, []);
 
   console.log(user);
 
   return (
-    <>
-      <ApolloProvider client={client}>
-        <Outlet />
-      </ApolloProvider>
-    </>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="app-container">
+          {/* Your site's navigation and other content here */}
+          
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/other" element={<OtherPage />} />
+            {/* ... other routes ... */}
+          </Routes>
+          
+          {/* The SpotifyPlayer component that might be shown conditionally */}
+          {accessToken && <SpotifyPlayer accessToken={accessToken} />}
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
