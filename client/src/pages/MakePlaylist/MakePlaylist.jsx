@@ -99,7 +99,10 @@ const MakePlaylist = () => {
           <ul className="search-songs">
             {songList.map((song) => (
               <li key={song.id}>
-                <button onClick={() => handleSongClick(song)}>
+                <button
+                  className="search-btn"
+                  onClick={() => handleSongClick(song)}
+                >
                   {song.name}
                 </button>
               </li>

@@ -19,11 +19,13 @@ html {
   align-items: center;
   flex-direction: column;
   list-style-type: disc;
+  border: 1px solid #ccc;
 }
 
 .selected-songs,
 .search-songs {
-  list-style-type: disc;
+  list-style-type: none;
+  margin-top: 20px;
 }
 
 .selected-songs {
@@ -37,9 +39,31 @@ html {
   align-items: center;
 }
 
-/* .search-songs {
-  margin-top: 20px;
-} */
+.search-btn {
+  background-color: #272a30;
+  border: none;
+  color: #ededed;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* float: right; */
+  /* margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
 
 .playlist-container {
   display: flex;
