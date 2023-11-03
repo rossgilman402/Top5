@@ -87,7 +87,9 @@ const MakePlaylist = () => {
 
   const handleCreatePlaylistWithSong = (e) => {
     e.preventDefault();
-    console.log("HELLO WORLD");
+    //We need to take all data and enter into db
+    //get user token from local storage
+    //create a playlist for that user
   };
 
   const handleChange = (e) => {

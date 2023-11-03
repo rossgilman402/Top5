@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,10 +7,10 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SpotifyPlayer from "./components/SpotifyPlayer/SpotifyPlayer"; // Import your SpotifyPlayer component
-import HomePage from "./pages/Home"; // Import your HomePage component
-import OtherPage from "./pages/Login/Login";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import SpotifyPlayer from "./components/SpotifyPlayer/SpotifyPlayer"; // Import your SpotifyPlayer component
+// import HomePage from "./pages/Home"; // Import your HomePage component
+// import OtherPage from "./pages/Login/Login";
 import { Outlet } from "react-router-dom";
 // ... import other components and pages ...
 
