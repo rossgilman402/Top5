@@ -1,0 +1,12 @@
+.make-playlist-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 65vh;
+  color: white;
+}
+
+.search-container {
+  margin: 20px;
+}
