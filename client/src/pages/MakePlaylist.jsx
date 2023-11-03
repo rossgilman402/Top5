@@ -2,7 +2,6 @@ import PlaylistNameImage from "../components/PlaylistNameImage/PlaylistNameImage
 import SongList from "../components/SongList/SongList";
 import Navbar from "../components/Navbar/Navbar";
 
-
 //needs some sort of useEffect
 
 //Need utils so that we can call api using axios is best method?
@@ -17,7 +16,6 @@ const MakePlaylist = () => {
       <Navbar />
       <PlaylistNameImage />
       <SongList />
-    
     </div>
   );
 };
