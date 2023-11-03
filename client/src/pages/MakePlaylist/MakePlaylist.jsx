@@ -7,6 +7,7 @@ const MakePlaylist = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
+  const [playlistName, setPlaylistName] = useState("");
 
   useEffect(() => {
     if (searchQuery === "") {
@@ -64,6 +65,7 @@ const MakePlaylist = () => {
 
   const handleSongClick = (song) => {
     // Check if the song is not already in selectedSongs and the playlist has fewer than 5 songs
+    console.log(song);
     if (
       !selectedSongs.some((selected) => selected.id === song.id) &&
       selectedSongs.length < 5
@@ -83,11 +85,35 @@ const MakePlaylist = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleCreatePlaylistWithSong = (e) => {
+    e.preventDefault();
+    console.log("HELLO WORLD");
+  };
+
+  const handleChange = (e) => {
+    setPlaylistName(e.target.value);
+  };
+
   return (
     <div>
       <Navbar />
-      <div className="make-playlist-container">
+      <form
+        onSubmit={handleCreatePlaylistWithSong}
+        className="make-playlist-container"
+      >
         <div className="search-container">
+          <div>
+            <h2>Create Playlist</h2>
+            <label htmlFor="playlistName">Playlist Name:</label>
+            <input
+              type="text"
+              placeholder="Name"
+              id="playlistName"
+              value={playlistName}
+              onChange={handleChange}
+            />
+          </div>
+
           <h2>Search for Songs</h2>
           <input
             type="text"
@@ -96,7 +122,7 @@ const MakePlaylist = () => {
             onChange={handleSearchQueryChange}
           />
 
-          <ul>
+          <ul className="search-list-container">
             {songList.map((song) => (
               <li key={song.id}>
                 <button onClick={() => handleSongClick(song)}>
@@ -117,7 +143,10 @@ const MakePlaylist = () => {
             />
           ))}
         </ul>
-      </div>
+        <button className="btn" style={{ cursor: "pointer" }} type="submit">
+          Submit Playlist Name with Desired Songs
+        </button>
+      </form>
     </div>
   );
 };
