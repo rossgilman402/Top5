@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './SpotifyPlayer.css'; // Make sure this is the path to your CSS file
+import './SpotifyPlayer.css'; // Ensure this file contains the necessary styles
 
 const SpotifyPlayer = ({ accessToken }) => {
   const [player, setPlayer] = useState(null);
   const [currentTrack, setCurrentTrack] = useState({
     albumImageUrl: '', // Placeholder for album image URL
-    artist: '',
-    title: '',
+    title: 'Track Title', // Placeholder for track title
+    artist: 'Track Artist', // Placeholder for artist name
   });
 
   useEffect(() => {
-    if (accessToken && !player) {
+    if (accessToken) {
       const script = document.createElement('script');
       script.src = 'https://sdk.scdn.co/spotify-player.js';
       script.async = true;
@@ -20,37 +20,32 @@ const SpotifyPlayer = ({ accessToken }) => {
         const spotifyPlayer = new window.Spotify.Player({
           name: 'Web Playback SDK Quick Start Player',
           getOAuthToken: cb => { cb(accessToken); },
-          volume: 0.5
         });
 
-        // Event listeners
+        // Event listeners for player state
+        spotifyPlayer.addListener('player_state_changed', state => {
+          // Update current track state here
+          // You will need to extract the current track information from the state
+          // and update setCurrentTrack accordingly
+        });
+
+        // Ready
         spotifyPlayer.addListener('ready', ({ device_id }) => {
           console.log('Ready with Device ID', device_id);
         });
 
+        // Not Ready
         spotifyPlayer.addListener('not_ready', ({ device_id }) => {
           console.log('Device ID has gone offline', device_id);
-        });
-
-        spotifyPlayer.addListener('player_state_changed', state => {
-          if (!state) {
-            return;
-          }
-          const currentTrack = state.track_window.current_track;
-          setCurrentTrack({
-            albumImageUrl: currentTrack.album.images[0].url,
-            artist: currentTrack.artists.map(artist => artist.name).join(', '),
-            title: currentTrack.name,
-          });
         });
 
         setPlayer(spotifyPlayer);
         spotifyPlayer.connect();
       };
     }
-  }, [accessToken, player]);
+  }, [accessToken]);
 
-  // Control functions
+  // Example control functions
   const play = () => {
     player.resume().then(() => {
       console.log('Resumed!');
@@ -63,17 +58,18 @@ const SpotifyPlayer = ({ accessToken }) => {
     });
   };
 
-  // Render player controls with album art
+  // Render player controls
   return (
-    <div className="spotify-player-container">
-      <div className="track-info">
-        <img src={currentTrack.albumImageUrl} alt="Album Art" className="album-art" />
-        <div className="track-details">
-          <h3>{currentTrack.title}</h3>
-          <p>{currentTrack.artist}</p>
-        </div>
+    <div className="player-container">
+      <div className="img-container">
+        {/* Placeholder for album art */}
+        <img src={currentTrack.albumImageUrl} alt="Album Art" />
       </div>
-      <div className="player-controls">
+      <div className="track-info">
+        <h2 id="title">{currentTrack.title}</h2>
+        <h3 id="artist">{currentTrack.artist}</h3>
+      </div>
+      <div className="spotify-controls">
         <button onClick={play}>Play</button>
         <button onClick={pause}>Pause</button>
         {/* Add more controls as needed */}

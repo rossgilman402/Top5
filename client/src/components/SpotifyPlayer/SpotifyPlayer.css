@@ -1,98 +1,95 @@
 /* SpotifyPlayer.css */
 
-.spotify-player {
+.player-container {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: #282828;
     color: white;
-    padding: 10px 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000; /* Ensure it's above other content */
   }
   
-  .track-info {
+  .img-container {
     display: flex;
     align-items: center;
   }
   
-  .album-art {
-    height: 60px;
-    width: 60px;
+  .img-container img {
+    height: 60px; /* Set the height of the album image */
+    width: 60px; /* Set the width of the album image */
     object-fit: cover;
     margin-right: 20px;
     border-radius: 5px;
   }
   
-  .track-details h3 {
-    font-size: 16px;
-    margin: 0 0 5px 0;
+  .track-info {
+    flex-grow: 1;
   }
   
-  .track-details p {
-    font-size: 14px;
+  #title, #artist {
     margin: 0;
+    padding: 0;
   }
   
-  .player-controls {
+  #title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  #artist {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+  .spotify-controls {
     display: flex;
     align-items: center;
   }
   
-  .player-controls button {
+  button {
     background-color: #1db954;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     margin: 0 5px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    outline: none;
   }
   
-  .player-controls button:hover {
+  button:hover {
     background-color: #1ed760;
   }
   
-  .player-controls button:disabled {
+  button:disabled {
     background-color: #3e3e3e;
     cursor: default;
   }
   
-  /* Responsive adjustments */
+  /* Add media queries for responsiveness if necessary */
   @media (max-width: 768px) {
-    .spotify-player {
-      flex-direction: column;
-      padding: 10px;
-    }
-  
-    .track-info {
-      margin-bottom: 10px;
-    }
-  
-    .album-art {
+    .img-container img {
       height: 50px;
       width: 50px;
     }
   
-    .player-controls button {
-      padding: 8px 16px;
+    #title {
+      font-size: 14px;
+    }
+  
+    #artist {
       font-size: 12px;
     }
-  }
   
-  @media (max-width: 480px) {
-    .track-details h3,
-    .track-details p {
-      display: none; /* Hide text on very small screens */
-    }
-  
-    .album-art {
-      margin-right: 10px;
+    .spotify-controls button {
+      padding: 6px 12px;
+      font-size: 12px;
     }
   }
   
