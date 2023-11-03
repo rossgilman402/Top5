@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: black;
+  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
   padding: 25px;
+  /* list-style-type: none; */
 }
 
 .nav-container h1 {
@@ -20,25 +21,33 @@
 
 .list-container .link {
   text-decoration: none;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   padding: 5px;
   color: lightgrey;
+  transition: color 0.5s ease;
 }
 
 .list-container .link:hover {
-  color: white;
-  font-size: 18px;
+  color: #f2e3bc;
+  /* font-size: 18px; */
 }
 
 .list-container .login-logout {
   text-decoration: none;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   padding: 5px 18px;
   border-radius: 10px;
   color: black;
   background-color: white;
+  transition: color 0.5s ease, background-color 0.5s ease;
 }
 
 .list-container .login-logout:hover {
-  font-size: 18px;
+  color: #0b0b0b;
+  background-color: #f2e3bc;
+  /* font-size: 18px; */
 }
+
+/* .nav-container:hover {
+  background-image: linear-gradient(to right, #e3e3e3, #7e7e7e, #f3f3f3);
+} */
