@@ -1,0 +1,41 @@
+/* SpotifyPlayer.css */
+
+.spotify-player-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #282828;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+  
+  .spotify-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  button {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #1ed760;
+  }
+  
+  button:disabled {
+    background-color: #3e3e3e;
+    cursor: default;
+  }
+  
