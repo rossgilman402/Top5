@@ -2,11 +2,54 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
   padding: 25px;
-  /* make sticky */
-  position: sticky;
-  /* list-style-type: none; */
+  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
+  -webkit-animation: AnimateBG 5s infinite;
+  animation: AnimateBG 5s infinite;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animateBackground {
+  0% {
+    background-position: 150%;
+  }
+  100% {
+    background-position: -50%;
+  }
+}
+
+.nav-title {
+  background: radial-gradient(circle closest-side, #fff 97%, #000),
+    radial-gradient(circle closest-side, #23395b 97%, #0000);
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  background-size: 230% 100%;
+  background-repeat: no-repeat;
+  animation: animateBackground 2.5s linear infinite alternate;
+  color: #f2e3bc;
 }
 
 .nav-container h1 {
