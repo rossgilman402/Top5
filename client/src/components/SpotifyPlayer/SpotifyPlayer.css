@@ -1,6 +1,6 @@
 /* SpotifyPlayer.css */
 
-.spotify-player-container {
+.player-container {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -12,6 +12,38 @@
     justify-content: space-between;
     align-items: center;
     z-index: 1000; /* Ensure it's above other content */
+  }
+  
+  .img-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .img-container img {
+    height: 60px; /* Set the height of the album image */
+    width: 60px; /* Set the width of the album image */
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+  .track-info {
+    flex-grow: 1;
+  }
+  
+  #title, #artist {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  #artist {
+    font-size: 14px;
+    font-weight: 300;
   }
   
   .spotify-controls {
@@ -28,6 +60,7 @@
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
+    outline: none;
   }
   
   button:hover {
@@ -37,5 +70,26 @@
   button:disabled {
     background-color: #3e3e3e;
     cursor: default;
+  }
+  
+  /* Add media queries for responsiveness if necessary */
+  @media (max-width: 768px) {
+    .img-container img {
+      height: 50px;
+      width: 50px;
+    }
+  
+    #title {
+      font-size: 14px;
+    }
+  
+    #artist {
+      font-size: 12px;
+    }
+  
+    .spotify-controls button {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
   }
   

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './SpotifyPlayer.css'; // Import the CSS file
+import './SpotifyPlayer.css'; // Ensure this file contains the necessary styles
 
 const SpotifyPlayer = ({ accessToken }) => {
   const [player, setPlayer] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState({
+    albumImageUrl: '', // Placeholder for album image URL
+    title: 'Track Title', // Placeholder for track title
+    artist: 'Track Artist', // Placeholder for artist name
+  });
 
   useEffect(() => {
     if (accessToken) {
@@ -14,7 +19,14 @@ const SpotifyPlayer = ({ accessToken }) => {
       window.onSpotifyWebPlaybackSDKReady = () => {
         const spotifyPlayer = new window.Spotify.Player({
           name: 'Web Playback SDK Quick Start Player',
-          getOAuthToken: cb => { cb(accessToken); }
+          getOAuthToken: cb => { cb(accessToken); },
+        });
+
+        // Event listeners for player state
+        spotifyPlayer.addListener('player_state_changed', state => {
+          // Update current track state here
+          // You will need to extract the current track information from the state
+          // and update setCurrentTrack accordingly
         });
 
         // Ready
@@ -28,8 +40,6 @@ const SpotifyPlayer = ({ accessToken }) => {
         });
 
         setPlayer(spotifyPlayer);
-
-        // Connect to the player!
         spotifyPlayer.connect();
       };
     }
@@ -50,10 +60,20 @@ const SpotifyPlayer = ({ accessToken }) => {
 
   // Render player controls
   return (
-    <div>
-      <div>Spotify Player</div>
-      <button onClick={play}>Play</button>
-      <button onClick={pause}>Pause</button>
+    <div className="player-container">
+      <div className="img-container">
+        {/* Placeholder for album art */}
+        <img src={currentTrack.albumImageUrl} alt="Album Art" />
+      </div>
+      <div className="track-info">
+        <h2 id="title">{currentTrack.title}</h2>
+        <h3 id="artist">{currentTrack.artist}</h3>
+      </div>
+      <div className="spotify-controls">
+        <button onClick={play}>Play</button>
+        <button onClick={pause}>Pause</button>
+        {/* Add more controls as needed */}
+      </div>
     </div>
   );
 };
