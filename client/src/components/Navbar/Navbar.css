@@ -4,6 +4,8 @@
   align-items: center;
   background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
   padding: 25px;
+  /* make sticky */
+  position: sticky;
   /* list-style-type: none; */
 }
 

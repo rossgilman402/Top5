@@ -28,9 +28,9 @@ div.playlist {
   background: rgb(106, 142, 127);
   background: linear-gradient(
     41deg,
-    rgba(106, 142, 127, 1) 0%,
+    rgb(55, 65, 70) 0%,
     rgba(35, 57, 91, 1) 60%,
-    rgba(39, 42, 48, 1) 100%
+    rgb(32, 39, 52) 100%
   );
   width: 50%;
   border-radius: 5px;
