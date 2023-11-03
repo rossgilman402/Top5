@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_PLAYLIST } from "../../utils/mutations";
-import AddedSong from "../../components/AddedSong/AddedSong";
-import Navbar from "../../components/Navbar/Navbar";
-import "./MakePlaylist.css";
+import { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_PLAYLIST } from '../../utils/mutations';
+import AddedSong from '../../components/AddedSong/AddedSong';
+import Navbar from '../../components/Navbar/Navbar';
+import './MakePlaylist.css';
 
 const MakePlaylist = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
-  const [playlistName, setPlaylistName] = useState("");
+  const [playlistName, setPlaylistName] = useState('');
   const [playlist, { err }] = useMutation(ADD_PLAYLIST);
 
   const handleCreatePlaylistWithSong = async (e) => {
@@ -34,27 +34,27 @@ const MakePlaylist = () => {
   };
 
   useEffect(() => {
-    if (searchQuery === "") {
+    if (searchQuery === '') {
       setSongList([]);
     } else {
       // Make a search request to Spotify API when the search query changes
-      const clientId = "f4f10d8cdc4c43cfb9696c430ba1cb5a";
-      const clientSecret = "72ab0302629e417cb4ca0c834c4479e3";
-      const baseUrl = "https://api.spotify.com/v1/";
+      const clientId = 'f4f10d8cdc4c43cfb9696c430ba1cb5a';
+      const clientSecret = '72ab0302629e417cb4ca0c834c4479e3';
+      const baseUrl = 'https://api.spotify.com/v1/';
 
       const getAccessToken = async (clientId, clientSecret) => {
-        const tokenUrl = "https://accounts.spotify.com/api/token";
+        const tokenUrl = 'https://accounts.spotify.com/api/token';
         const data = new URLSearchParams();
-        data.append("grant_type", "client_credentials");
+        data.append('grant_type', 'client_credentials');
 
         const auth = btoa(`${clientId}:${clientSecret}`);
         const headers = {
           Authorization: `Basic ${auth}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         };
 
         const response = await fetch(tokenUrl, {
-          method: "POST",
+          method: 'POST',
           headers,
           body: data,
         });
@@ -63,7 +63,7 @@ const MakePlaylist = () => {
       };
 
       getAccessToken(clientId, clientSecret).then((accessToken) => {
-        const type = "track";
+        const type = 'track';
         const limit = 10; // Number of results to display
 
         const endpoint = `search?q=${encodeURIComponent(
@@ -81,7 +81,7 @@ const MakePlaylist = () => {
             setSongList(searchResults.tracks.items);
           })
           .catch((error) => {
-            console.error("Error fetching data from Spotify:", error);
+            console.error('Error fetching data from Spotify:', error);
           });
       });
     }
@@ -118,30 +118,38 @@ const MakePlaylist = () => {
       <Navbar />
       <div className="make-playlist-container">
         <div className="search-container">
+          {/* <h2 className="search-title">Search for Songs</h2> */}
           <div>
-            <h2>Create Playlist</h2>
-            <label htmlFor="playlistName">Playlist Name:</label>
+            <h2 className="create-playlist">Create Playlist</h2>
+            <label className="playlist-name" htmlFor="playlistName">
+              Playlist Name:
+            </label>
             <input
+              className="search-input"
               type="text"
-              placeholder="Name"
+              placeholder="'My Playlist'"
               id="playlistName"
               value={playlistName}
               onChange={handleChange}
             />
           </div>
 
-          <h2>Search for Songs</h2>
+          <h2 className="search-title">Search for Songs</h2>
           <input
+            className="search-input"
             type="text"
             placeholder="Search for a song..."
             value={searchQuery}
             onChange={handleSearchQueryChange}
           />
 
-          <ul className="search-list-container">
+          <ul className="search-songs">
             {songList.map((song) => (
               <li key={song.id}>
-                <button onClick={() => handleSongClick(song)}>
+                <button
+                  className="search-btn"
+                  onClick={() => handleSongClick(song)}
+                >
                   {song.name}
                 </button>
               </li>
@@ -149,24 +157,26 @@ const MakePlaylist = () => {
           </ul>
         </div>
 
-        <h2>Selected Songs</h2>
-        <ul>
-          {selectedSongs.map((song) => (
-            <AddedSong
-              key={song.id}
-              song={song}
-              onRemove={() => handleRemoveSong(song)}
-            />
-          ))}
-        </ul>
-        <button
-          onClick={handleCreatePlaylistWithSong}
-          className="btn"
-          style={{ cursor: "pointer" }}
-          type="submit"
-        >
-          Submit Playlist Name with Desired Songs
-        </button>
+        <div className="playlist-container">
+          <h2>Selected Songs</h2>
+          <ul className="selected-songs">
+            {selectedSongs.map((song) => (
+              <AddedSong
+                key={song.id}
+                song={song}
+                onRemove={() => handleRemoveSong(song)}
+              />
+            ))}
+          </ul>
+          <button
+            onClick={handleCreatePlaylistWithSong}
+            className="btn"
+            style={{ cursor: 'pointer' }}
+            type="submit"
+          >
+            Submit Playlist Name with Desired Songs
+          </button>
+        </div>
       </div>
     </div>
   );

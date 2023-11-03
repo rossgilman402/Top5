@@ -1,16 +1,301 @@
+html {
+  background-color: #161925;
+}
 .make-playlist-container {
+  background-color: #161925;
+  display: flex;
+  height: 65vh;
+  color: white;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding: 40px;
+  /* margin: 10px; */
+}
+
+@keyframes rotatingShadow {
+  0% {
+    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  10% {
+    box-shadow: 1px 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  20% {
+    box-shadow: 1px 0 1px 1px rgba(255, 255, 255, 0.3);
+  }
+  30% {
+    box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 0.4);
+  }
+  40% {
+    box-shadow: 0 1px 1px 1px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: -1px 1px 1px 1px rgba(255, 255, 255, 0.6);
+  }
+  60% {
+    box-shadow: -1px 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.6);
+  }
+  80% {
+    box-shadow: 0 -1px 1px 1px rgba(255, 255, 255, 0.5);
+  }
+  90% {
+    box-shadow: 1px -1px 1px 1px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.search-container::before {
+  content: '';
+  position: absolute;
+  top: -50vw;
+  left: -50vw;
+  /* right: -50vw;
+  bottom: -50vw; */
+  height: 200vw;
+  width: 200vw;
+  background: radial-gradient(
+    farthest-side at 50% 50%,
+    rgba(255, 255, 255, 0.269),
+    #272a3018
+  );
+  background-size: 100% 200%;
+  border-radius: 60%;
+  animation: rotate 9s linear infinite;
+  pointer-events: none;
+}
+
+.search-input {
+  background-color: #272a30;
+  border: none;
+  color: #ededed;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* float: right; */
+  /* margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  /* text-transform: uppercase; */
+  transition: 0.2s ease;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* .search-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  border-radius: 50%;
+  animation: shine 5s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    --x: 0%;
+    --y: 0%;
+  }
+  25% {
+    --x: 100%;
+    --y: 0%;
+  }
+  50% {
+    --x: 100%;
+    --y: 100%;
+  }
+  75% {
+    --x: 0%;
+    --y: 100%;
+  }
+  100% {
+    --x: 0%;
+    --y: 0%;
+  }
+} */
+
+.search-container {
+  margin: 20px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 65vh;
-  color: white;
+  list-style-type: disc;
+  /* border: 1px solid #ccc; */
+  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
+  background-size: 150% 150%;
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
+  border-radius: 10px;
+  /* box-shadow: 0 0 5px rgba(255, 255, 255, 0.709); */
+  /* animation: rotatingShadow 5s linear infinite; */
+  position: relative;
+  overflow: hidden;
 }
 
-.search-container {
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.selected-songs,
+.search-songs {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.selected-songs {
+  width: 500px;
+  max-width: 75%;
+}
+
+.added-song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-btn {
+  background-color: #272a30;
+  border: none;
+  color: #ededed;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* float: right; */
+  /* margin-right: 10px; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.playlist-container::before {
+  content: '';
+  position: absolute;
+  top: -50vw;
+  left: -50vw;
+  height: 200vw;
+  width: 200vw;
+  background: radial-gradient(
+    farthest-side at 50% 50%,
+    rgba(255, 255, 255, 0.269),
+    #272a3018
+  );
+  background-size: 100% 200%;
+  border-radius: 60%;
+  animation: rotate 9s linear infinite;
+  pointer-events: none;
+}
+
+.playlist-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: disc;
   margin: 20px;
+  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
+  background-size: 150% 150%;
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-title {
+  position: relative;
+  margin: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  /* font-size: 36px; */
+  /* margin-bottom: 30px; */
+  padding-bottom: 10px;
+  cursor: default;
+  align-self: center;
+  /* top: 10px; */
 }
 
 .search-list-container {
   overflow-y: scroll;
+}
+
+.playlist-name {
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.create-playlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: disc;
+  margin: 20px;
+  /* background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b); */
+  /* background-size: 150% 150%; */
 }
