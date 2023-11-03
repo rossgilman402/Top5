@@ -1,10 +1,19 @@
+div.playlist {
+  box-sizing: border-box;
+  background-color: #161925;
+}
+
+.playlist h1 {
+  color: #ecebe1;
+}
+
 .playlist {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
   padding: 10px;
   background-color: #fff;
@@ -16,10 +25,17 @@
   flex-direction: row;
   align-items: start;
   margin: 10px auto;
-  background-color: mediumseagreen;
+  background: rgb(106, 142, 127);
+  background: linear-gradient(
+    41deg,
+    rgba(106, 142, 127, 1) 0%,
+    rgba(35, 57, 91, 1) 60%,
+    rgba(39, 42, 48, 1) 100%
+  );
   width: 50%;
   border-radius: 5px;
   padding-left: 10px;
+  color: #ecebe1;
 }
 
 .song.info {
@@ -31,8 +47,9 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  background-color: #fff;
+  /* background-color: #fff; */
   width: 50%;
+  color: #dbdbdb;
 }
 
 /* .title {
