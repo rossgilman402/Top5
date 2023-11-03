@@ -25,3 +25,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_PLAYLIST = gql`
+  mutation addPlaylist($name: String!, $img: String, $songs: Array!) {
+    addPlaylist(name: $name, img: $img songs: $songs) {
+      playlist {
+        _id
+        name
+        img
+        songs []
+      }
+    }
+  }
+`;

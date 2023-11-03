@@ -12,4 +12,4 @@ const playListSchema = new mongoose.Schema({
 
 const PlayList = mongoose.model("playList", playListSchema);
 
-module.exports = { PlayList, validate };
+module.exports = { PlayList };
