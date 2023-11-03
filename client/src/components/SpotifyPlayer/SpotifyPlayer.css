@@ -1,41 +1,98 @@
 /* SpotifyPlayer.css */
 
-.spotify-player-container {
+.spotify-player {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: #282828;
     color: white;
-    padding: 10px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000; /* Ensure it's above other content */
   }
   
-  .spotify-controls {
+  .track-info {
     display: flex;
     align-items: center;
   }
   
-  button {
+  .album-art {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+  .track-details h3 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+  }
+  
+  .track-details p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .player-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-controls button {
     background-color: #1db954;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     margin: 0 5px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .player-controls button:hover {
     background-color: #1ed760;
   }
   
-  button:disabled {
+  .player-controls button:disabled {
     background-color: #3e3e3e;
     cursor: default;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .spotify-player {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .track-info {
+      margin-bottom: 10px;
+    }
+  
+    .album-art {
+      height: 50px;
+      width: 50px;
+    }
+  
+    .player-controls button {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .track-details h3,
+    .track-details p {
+      display: none; /* Hide text on very small screens */
+    }
+  
+    .album-art {
+      margin-right: 10px;
+    }
   }
   
