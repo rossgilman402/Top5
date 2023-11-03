@@ -36,6 +36,21 @@
 @keyframes animateBackground {
   0% {
     background-position: 150%;
+    color: #e0e0e0;
+  }
+  50% {
+    background-position: 50%;
+    color: #efefef;
+  }
+  100% {
+    background-position: -50%;
+    color: #e0e0e0;
+  }
+}
+
+@-webkit-keyframes animateBackground {
+  0% {
+    background-position: 150%;
   }
   100% {
     background-position: -50%;
@@ -44,18 +59,18 @@
 
 .nav-title {
   background: radial-gradient(circle closest-side, #fff 97%, #000),
-    radial-gradient(circle closest-side, #23395b 97%, #0000);
+    radial-gradient(circle closest-side, #23395b9d 97%, #0000);
   -webkit-background-clip: text, padding-box;
   background-clip: text, padding-box;
   background-size: 230% 100%;
   background-repeat: no-repeat;
   animation: animateBackground 2.5s linear infinite alternate;
-  color: #f2e3bc;
+  /* color: #f2e3bc; */
 }
 
-.nav-container h1 {
+/* .nav-container h1 {
   color: white;
-}
+} */
 
 .list-container {
   display: flex;
@@ -93,7 +108,3 @@
   background-color: #f2e3bc;
   /* font-size: 18px; */
 }
-
-/* .nav-container:hover {
-  background-image: linear-gradient(to right, #e3e3e3, #7e7e7e, #f3f3f3);
-} */
