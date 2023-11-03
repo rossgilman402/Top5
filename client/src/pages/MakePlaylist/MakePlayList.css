@@ -4,11 +4,12 @@ html {
 .make-playlist-container {
   background-color: #161925;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   height: 65vh;
   color: white;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }
 
 .search-container {
@@ -23,4 +24,28 @@ html {
 .selected-songs,
 .search-songs {
   list-style-type: disc;
+}
+
+.selected-songs {
+  width: 500px;
+  max-width: 75%;
+}
+
+.added-song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .search-songs {
+  margin-top: 20px;
+} */
+
+.playlist-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: disc;
+  border: 1px solid #ccc;
 }

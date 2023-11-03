@@ -107,16 +107,18 @@ const MakePlaylist = () => {
           </ul>
         </div>
 
-        <h2>Selected Songs</h2>
-        <ul className="selected-songs">
-          {selectedSongs.map((song) => (
-            <AddedSong
-              key={song.id}
-              song={song}
-              onRemove={() => handleRemoveSong(song)}
-            />
-          ))}
-        </ul>
+        <div className="playlist-container">
+          <h2>Selected Songs</h2>
+          <ul className="selected-songs">
+            {selectedSongs.map((song) => (
+              <AddedSong
+                key={song.id}
+                song={song}
+                onRemove={() => handleRemoveSong(song)}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
