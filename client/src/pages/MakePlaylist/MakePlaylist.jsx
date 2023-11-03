@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import AddedSong from "../components/AddedSong/AddedSong";
+import AddedSong from "../../components/AddedSong/AddedSong";
+import Navbar from "../../components/Navbar/Navbar";
+import "./MakePlaylist.css";
 
 const MakePlaylist = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -83,32 +85,39 @@ const MakePlaylist = () => {
 
   return (
     <div>
-      <h2>Selected Songs</h2>
-      <ul>
-        {selectedSongs.map((song) => (
-          <AddedSong
-            key={song.id}
-            song={song}
-            onRemove={() => handleRemoveSong(song)}
+      <Navbar />
+      <div className="make-playlist-container">
+        <div className="search-container">
+          <h2>Search for Songs</h2>
+          <input
+            type="text"
+            placeholder="Search for a song..."
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
           />
-        ))}
-      </ul>
 
-      <h2>Search for Songs</h2>
-      <input
-        type="text"
-        placeholder="Search for a song..."
-        value={searchQuery}
-        onChange={handleSearchQueryChange}
-      />
+          <ul>
+            {songList.map((song) => (
+              <li key={song.id}>
+                <button onClick={() => handleSongClick(song)}>
+                  {song.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <ul>
-        {songList.map((song) => (
-          <li key={song.id}>
-            <button onClick={() => handleSongClick(song)}>{song.name}</button>
-          </li>
-        ))}
-      </ul>
+        <h2>Selected Songs</h2>
+        <ul>
+          {selectedSongs.map((song) => (
+            <AddedSong
+              key={song.id}
+              song={song}
+              onRemove={() => handleRemoveSong(song)}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
