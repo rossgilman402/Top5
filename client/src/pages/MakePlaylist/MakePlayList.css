@@ -266,9 +266,36 @@ html {
 }
 
 .search-title {
+  position: relative;
   margin: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  /* font-size: 36px; */
+  /* margin-bottom: 30px; */
+  padding-bottom: 10px;
+  cursor: default;
+  align-self: center;
+  /* top: 10px; */
 }
 
 .search-list-container {
   overflow-y: scroll;
+}
+
+.playlist-name {
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.create-playlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: disc;
+  margin: 20px;
+  /* background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b); */
+  /* background-size: 150% 150%; */
 }

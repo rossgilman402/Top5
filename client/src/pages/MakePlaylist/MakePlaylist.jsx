@@ -118,20 +118,23 @@ const MakePlaylist = () => {
       <Navbar />
       <div className="make-playlist-container">
         <div className="search-container">
-          <h2 className="search-title">Search for Songs</h2>
+          {/* <h2 className="search-title">Search for Songs</h2> */}
           <div>
-            <h2>Create Playlist</h2>
-            <label htmlFor="playlistName">Playlist Name:</label>
+            <h2 className="create-playlist">Create Playlist</h2>
+            <label className="playlist-name" htmlFor="playlistName">
+              Playlist Name:
+            </label>
             <input
+              className="search-input"
               type="text"
-              placeholder="Name"
+              placeholder="'My Playlist'"
               id="playlistName"
               value={playlistName}
               onChange={handleChange}
             />
           </div>
 
-          <h2>Search for Songs</h2>
+          <h2 className="search-title">Search for Songs</h2>
           <input
             className="search-input"
             type="text"
