@@ -46,6 +46,10 @@ const Login = (props) => {
     });
   };
 
+  const spotifyClick = () => {
+    window.open("http://localhost:5000/auth/spotify", "_self");
+  };
+
   return (
     <div className="main-container">
       {data ? (
@@ -88,7 +92,7 @@ const Login = (props) => {
           </p>
           <p>Or sign in with</p>
           <div className="extra-signup">
-            <button>
+            <button onClick={spotifyClick}>
               <img src={SpotifyLogo} alt="Spotify Logo"></img>
             </button>
             <button>

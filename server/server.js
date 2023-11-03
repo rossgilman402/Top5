@@ -3,12 +3,16 @@ const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
-
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+const passportSetup = require("./passport");
+const authRoute = require("./routes/auth-routes");
+const cors = require("cors");
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -17,6 +21,25 @@ const server = new ApolloServer({
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
+
+  app.use(
+    cookieSession({
+      name: "session",
+      keys: ["passsord"],
+      maxAge: 24 * 60 * 60 * 100,
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      methods: "GET, POST, PUT, DELETE",
+      credentials: true,
+    })
+  );
+  app.use("/auth", authRoute);
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
