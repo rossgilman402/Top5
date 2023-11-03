@@ -1,4 +1,8 @@
+html {
+  background-color: #161925;
+}
 .make-playlist-container {
+  background-color: #161925;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,4 +13,14 @@
 
 .search-container {
   margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: disc;
+}
+
+.selected-songs,
+.search-songs {
+  list-style-type: disc;
 }

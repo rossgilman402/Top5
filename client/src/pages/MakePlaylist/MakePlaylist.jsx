@@ -1,35 +1,35 @@
-import { useState, useEffect } from "react";
-import AddedSong from "../../components/AddedSong/AddedSong";
-import Navbar from "../../components/Navbar/Navbar";
-import "./MakePlaylist.css";
+import { useState, useEffect } from 'react';
+import AddedSong from '../../components/AddedSong/AddedSong';
+import Navbar from '../../components/Navbar/Navbar';
+import './MakePlaylist.css';
 
 const MakePlaylist = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
 
   useEffect(() => {
-    if (searchQuery === "") {
+    if (searchQuery === '') {
       setSongList([]);
     } else {
       // Make a search request to Spotify API when the search query changes
-      const clientId = "f4f10d8cdc4c43cfb9696c430ba1cb5a";
-      const clientSecret = "72ab0302629e417cb4ca0c834c4479e3";
-      const baseUrl = "https://api.spotify.com/v1/";
+      const clientId = 'f4f10d8cdc4c43cfb9696c430ba1cb5a';
+      const clientSecret = '72ab0302629e417cb4ca0c834c4479e3';
+      const baseUrl = 'https://api.spotify.com/v1/';
 
       const getAccessToken = async (clientId, clientSecret) => {
-        const tokenUrl = "https://accounts.spotify.com/api/token";
+        const tokenUrl = 'https://accounts.spotify.com/api/token';
         const data = new URLSearchParams();
-        data.append("grant_type", "client_credentials");
+        data.append('grant_type', 'client_credentials');
 
         const auth = btoa(`${clientId}:${clientSecret}`);
         const headers = {
           Authorization: `Basic ${auth}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         };
 
         const response = await fetch(tokenUrl, {
-          method: "POST",
+          method: 'POST',
           headers,
           body: data,
         });
@@ -38,7 +38,7 @@ const MakePlaylist = () => {
       };
 
       getAccessToken(clientId, clientSecret).then((accessToken) => {
-        const type = "track";
+        const type = 'track';
         const limit = 10; // Number of results to display
 
         const endpoint = `search?q=${encodeURIComponent(
@@ -56,7 +56,7 @@ const MakePlaylist = () => {
             setSongList(searchResults.tracks.items);
           })
           .catch((error) => {
-            console.error("Error fetching data from Spotify:", error);
+            console.error('Error fetching data from Spotify:', error);
           });
       });
     }
@@ -96,7 +96,7 @@ const MakePlaylist = () => {
             onChange={handleSearchQueryChange}
           />
 
-          <ul>
+          <ul className="search-songs">
             {songList.map((song) => (
               <li key={song.id}>
                 <button onClick={() => handleSongClick(song)}>
@@ -108,7 +108,7 @@ const MakePlaylist = () => {
         </div>
 
         <h2>Selected Songs</h2>
-        <ul>
+        <ul className="selected-songs">
           {selectedSongs.map((song) => (
             <AddedSong
               key={song.id}
