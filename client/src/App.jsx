@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 
 import {
   ApolloClient,
@@ -29,6 +30,37 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:3000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          throw new Error("Authentication has failed!!");
+        })
+        .then((data) => {
+          setUser(data.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
+  console.log(user);
+
   return (
     <>
       <ApolloProvider client={client}>

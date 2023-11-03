@@ -24,7 +24,7 @@ const Navbar = () => {
         </li>
         <li>
           {Auth.loggedIn() ? (
-            <Link className="login-logout" to="/logout">
+            <Link className="login-logout" to="/" onClick={() => Auth.logout()}>
               Logout
             </Link>
           ) : (

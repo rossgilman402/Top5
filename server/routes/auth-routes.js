@@ -1,23 +1,42 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-//Auth login
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+// router.get("/login/failed", (req, res) => {
+//   res.status(401).json({ success: false, message: "failure" });
+// });
 
-//Auth logout
-router.get("/logout", (req, res) => {
-  //Handle with passport
-  res.send("logging out");
-});
+// router.get("/login/success", (req, res) => {
+//   if (req.user) {
+//     res
+//       .status(200)
+//       .json({ success: true, message: "Successful", user: req.user });
+//   }
+// });
 
-//Auth with yahoo
 router.get(
   "/spotify",
-  passport.authenticate("spotify", {
-    scope: ["profile"],
-  })
+  passport.authenticate(
+    "spotify"
+    // , { scope: ["Profile"] }
+  ),
+  (req, res) => {
+    return res.json({ name: "Error" });
+  }
+);
+
+router.get(
+  "/spotify/callback",
+  // passport.authenticate("spotify", {
+  //   // successRedirect: "http://localhost:3000/",
+  //   // failureRedirect: "/login/failed",
+  // }),
+  (req, res) => {
+    if (req.query.code) {
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
+  }
 );
 
 module.exports = router;
