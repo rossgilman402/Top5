@@ -40,26 +40,35 @@ const resolvers = {
 
       return { token, user };
     },
-    addPlaylist: async (parent, { name, songs, img }) => {
+    addPlaylist: async (parent, { name, songs, img }, context) => {
       try {
         // Step 1: Create the playlist
         const playlist = await Playlist.create({ name, img });
 
         // Step 2: Create song documents and associate them with the playlist
-        const songDocs = await Promise.all(
-          songs.map((song) =>
-            Song.create({ name: song, playlist: playlist._id })
-          )
+        const songPromises = songs.map(
+          async (song) =>
+            await Song.create({ name: song, playlist: playlist._id })
         );
 
-        // Step 3: Update the user's document to include the new playlist
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { playlists: playlist._id } },
+        const songDocs = await Promise.all(songPromises);
+
+        // Step 3: Add created songs to the playlist through playlist Id
+        const updatedPlaylist = await Playlist.findOneAndUpdate(
+          { _id: playlist._id },
+          { $addToSet: { songs: { $each: songDocs.map((song) => song._id) } } },
           { new: true }
         );
 
-        return { playlist };
+        console.log(context.user);
+        // Step 4: Update the user's document to include the new playlist
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { playlists: updatedPlaylist._id } },
+          { new: true }
+        );
+
+        return updatedPlaylist;
       } catch (error) {
         throw new Error("Playlist creation failed");
       }

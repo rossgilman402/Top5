@@ -1,6 +1,7 @@
 const db = require("./connection");
-const { User } = require("../models");
+const { User, Playlist } = require("../models");
 const cleanDB = require("./cleanDB");
+const userSeeds = require("./userSeeds.json");
 
 db.once("open", async () => {
   await cleanDB("User", "users");
@@ -19,6 +20,13 @@ db.once("open", async () => {
   } catch (err) {
     console.log(err);
   }
+
+  await cleanDB("Playlist", "playlists");
+
+  await Playlist.create(userSeeds);
+
+  console.log("all done!");
+  process.exit(0);
 
   console.log("Users seeded");
 
