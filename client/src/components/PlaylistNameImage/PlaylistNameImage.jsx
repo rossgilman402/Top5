@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./playlistNameImage.css";
 
 const PlaylistNameImage = () => {
@@ -15,7 +15,8 @@ const PlaylistNameImage = () => {
   };
 
   return (
-    <div className="playlist-name-image">
+    <div className="playlistname-container">
+      <h1>Create Playlist!</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <input
