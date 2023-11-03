@@ -1,5 +1,4 @@
-.playlistname-container {
-  height: 60vh;
+.songlist-container {
   display: flex;
   justify-content: center;
   align-items: center;
