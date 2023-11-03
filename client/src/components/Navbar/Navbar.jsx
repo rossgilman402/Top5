@@ -8,18 +8,18 @@ const Navbar = () => {
       <h1>Top5</h1>
       <ul className="list-container">
         <li>
-          <Link className="link" to="/home">
+          <Link className="link" to="/">
             Home
           </Link>
         </li>
         <li>
-          <Link className="link" to="/Playlists">
+          <Link className="link" to="/Playlist">
             PlayLists
           </Link>
         </li>
         <li>
-          <Link className="link" to="/Profile">
-            Profile
+          <Link className="link" to="/MakePlaylist">
+            Make Playlist
           </Link>
         </li>
         <li>

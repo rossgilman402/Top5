@@ -1,5 +1,6 @@
 import PlaylistNameImage from "../components/PlaylistNameImage/PlaylistNameImage";
 import SongList from "../components/SongList/SongList";
+import Navbar from "../components/Navbar/Navbar";
 
 //needs some sort of useEffect
 
@@ -12,6 +13,7 @@ import SongList from "../components/SongList/SongList";
 const MakePlaylist = () => {
   return (
     <div>
+      <Navbar />
       <PlaylistNameImage />
       <SongList />
     </div>

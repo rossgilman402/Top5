@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AddedSong from "../AddedSong/AddedSong";
+import "./SongList.css";
 
 const SongList = () => {
   const [selectedSongs, setSelectedSongs] = useState([]);
@@ -19,7 +20,7 @@ const SongList = () => {
   };
 
   return (
-    <div>
+    <div className="songlist-container">
       <h2>Song List</h2>
       <input
         type="text"
