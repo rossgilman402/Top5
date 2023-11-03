@@ -47,7 +47,7 @@ const Login = (props) => {
   };
 
   const spotifyClick = () => {
-    window.open("http://localhost:5000/auth/spotify", "_self");
+    window.open("http://localhost:3000/auth/spotify", "_self");
   };
 
   return (
