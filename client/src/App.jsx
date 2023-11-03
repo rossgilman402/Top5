@@ -1,6 +1,5 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,7 +7,12 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SpotifyPlayer from "./components/SpotifyPlayer/SpotifyPlayer"; // Import your SpotifyPlayer component
+import HomePage from "./pages/Home"; // Import your HomePage component
+import OtherPage from "./pages/Login/Login";
 import { Outlet } from "react-router-dom";
+// ... import other components and pages ...
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -31,36 +35,62 @@ const client = new ApolloClient({
 
 function App() {
   const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null); // State to store the Spotify access token
 
   useEffect(() => {
     const getUser = () => {
-    //   fetch("http://localhost:3000/auth/login/success", {
-    //     method: "GET",
-    //     credentials: "include",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Credentials": true,
-    //     },
-    //   })
-    //     .then((response) => {
-    //       if (response.status === 200) {
-    //         return response.json();
-    //       }
-    //       throw new Error("Authentication has failed!!");
-    //     })
-    //     .then((data) => {
-    //       setUser(data.user);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // };
+      fetch("http://localhost:3000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          }
+          throw new Error("Authentication has failed!!");
+        })
+        .then((data) => {
+          setUser(data.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const getSpotifyAccessToken = async () => {
+      // ... Spotify access token logic ...
+    };
+
     getUser();
+    getSpotifyAccessToken();
   }, []);
 
   console.log(user);
 
+  //   return (
+  //     <ApolloProvider client={client}>
+  //       <Router>
+  //         <div className="app-container">
+  //           {/* Your site's navigation and other content here */}
+
+  //           <Routes>
+  //             <Route path="/" element={<HomePage />} />
+  //             <Route path="/other" element={<OtherPage />} />
+  //             {/* ... other routes ... */}
+  //           </Routes>
+
+  //           {/* The SpotifyPlayer component that might be shown conditionally */}
+  //           {accessToken && <SpotifyPlayer accessToken={accessToken} />}
+  //         </div>
+  //       </Router>
+  //     </ApolloProvider>
+  //   );
+  // }
   return (
     <>
       <ApolloProvider client={client}>

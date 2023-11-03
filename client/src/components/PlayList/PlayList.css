@@ -1,10 +1,19 @@
+div.playlist {
+  box-sizing: border-box;
+  background-color: #161925;
+}
+
+.playlist h1 {
+  color: #ecebe1;
+}
+
 .playlist {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
   padding: 10px;
   background-color: #fff;
@@ -16,10 +25,44 @@
   flex-direction: row;
   align-items: start;
   margin: 10px auto;
-  background-color: mediumseagreen;
+  background: rgb(106, 142, 127);
+  background: linear-gradient(
+    41deg,
+    rgb(55, 65, 70) 0%,
+    rgba(35, 57, 91, 1) 60%,
+    rgb(32, 39, 52) 100%
+  );
   width: 50%;
   border-radius: 5px;
   padding-left: 10px;
+  color: #ecebe1;
+  background-size: 150% 150%;
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .song.info {
@@ -31,8 +74,9 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  background-color: #fff;
+  /* background-color: #fff; */
   width: 50%;
+  color: #dbdbdb;
 }
 
 /* .title {

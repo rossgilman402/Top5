@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
-import MakePlaylist from "./pages/MakePlaylist";
+import MakePlaylist from "./pages/MakePlaylist/MakePlaylist";
 import SinglePlaylist from "./pages/SinglePlaylist";
 
 const router = createBrowserRouter([
