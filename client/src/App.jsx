@@ -8,9 +8,10 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SpotifyPlayer from './components/SpotifyPlayer'; // Import your SpotifyPlayer component
-import HomePage from './pages/HomePage'; // Import your HomePage component
-import OtherPage from './pages/OtherPage'; // Import your OtherPage component
+import SpotifyPlayer from './components/SpotifyPlayer/SpotifyPlayer'; // Import your SpotifyPlayer component
+import HomePage from './pages/Home'; // Import your HomePage component
+import OtherPage from './pages/Login/Login'; 
+import { Outlet } from "react-router-dom";
 // ... import other components and pages ...
 
 const httpLink = createHttpLink({
@@ -71,24 +72,32 @@ function App() {
 
   console.log(user);
 
-  return (
+//   return (
+//     <ApolloProvider client={client}>
+//       <Router>
+//         <div className="app-container">
+//           {/* Your site's navigation and other content here */}
+          
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/other" element={<OtherPage />} />
+//             {/* ... other routes ... */}
+//           </Routes>
+          
+//           {/* The SpotifyPlayer component that might be shown conditionally */}
+//           {accessToken && <SpotifyPlayer accessToken={accessToken} />}
+//         </div>
+//       </Router>
+//     </ApolloProvider>
+//   );
+// }
+return (
+  <>
     <ApolloProvider client={client}>
-      <Router>
-        <div className="app-container">
-          {/* Your site's navigation and other content here */}
-          
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/other" element={<OtherPage />} />
-            {/* ... other routes ... */}
-          </Routes>
-          
-          {/* The SpotifyPlayer component that might be shown conditionally */}
-          {accessToken && <SpotifyPlayer accessToken={accessToken} />}
-        </div>
-      </Router>
+      <Outlet />
     </ApolloProvider>
-  );
+  </>
+);
 }
 
 export default App;

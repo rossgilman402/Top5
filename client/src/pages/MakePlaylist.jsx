@@ -16,6 +16,7 @@ const MakePlaylist = () => {
       <Navbar />
       <PlaylistNameImage />
       <SongList />
+      <SpotifyPlayer/>
     </div>
   );
 };
