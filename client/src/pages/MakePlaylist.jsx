@@ -1,7 +1,7 @@
 import PlaylistNameImage from "../components/PlaylistNameImage/PlaylistNameImage";
 import SongList from "../components/SongList/SongList";
 import Navbar from "../components/Navbar/Navbar";
-import SpotifyPlayer from "../components/SpotifyPlayer/SpotifyPlayer";
+
 
 //needs some sort of useEffect
 
@@ -17,7 +17,7 @@ const MakePlaylist = () => {
       <Navbar />
       <PlaylistNameImage />
       <SongList />
-      <SpotifyPlayer/>
+    
     </div>
   );
 };
