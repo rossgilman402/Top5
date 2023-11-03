@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './SpotifyPlayer.css'; // Import the CSS file
 
 const SpotifyPlayer = ({ accessToken }) => {
   const [player, setPlayer] = useState(null);
