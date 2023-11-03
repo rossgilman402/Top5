@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import './PlayList.css';
 const PlayList = ({}) => {
@@ -11,6 +12,7 @@ const PlayList = ({}) => {
   ];
   return (
     <>
+      <Navbar />
       {/* <container className="playlist-card"> */}
       <div className="playlist">
         <h1>Playlist Name</h1>
