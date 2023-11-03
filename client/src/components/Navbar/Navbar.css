@@ -5,8 +5,8 @@
   padding: 25px;
   background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
   background-size: 150% 150%;
-  -webkit-animation: AnimateBG 7s infinite;
-  animation: AnimateBG 7s infinite;
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
 }
 
 @-webkit-keyframes AnimateBG {
