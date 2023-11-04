@@ -1,17 +1,17 @@
-import "./Signup.css";
-import Top5 from "../../assets/top5-logo.png";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import './Signup.css';
+import Top5 from '../../assets/top5-logo.png';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../../utils/mutations";
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
 
-import Auth from "../../utils/auth";
+import Auth from '../../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -29,7 +29,7 @@ const Signup = () => {
     console.log(formState);
 
     try {
-      console.log("HERE");
+      console.log('HERE');
       const result = await addUser({
         variables: { ...formState },
       });
@@ -55,7 +55,7 @@ const Signup = () => {
             <label htmlFor="email">Email:</label>
             <input
               className="form-input"
-              placeholder="Your email"
+              placeholder="Email"
               name="email"
               type="email"
               id="email"
@@ -65,7 +65,7 @@ const Signup = () => {
             <label htmlFor="password">Password:</label>
             <input
               className="form-input"
-              placeholder="******"
+              placeholder="**********"
               name="password"
               type="password"
               id="password"
