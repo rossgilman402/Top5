@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(40, 40, 40);
+  background-color: #161925;
 }
 
 .main-container {
@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  background-color: #161925;
 }
 
 .login-container {
@@ -29,7 +30,7 @@ body {
   padding: 10px;
   border: 1px solid white;
   border-radius: 5px;
-  background-color: rgb(46, 46, 46);
+  background-color: #161925;
   color: white;
 }
 
