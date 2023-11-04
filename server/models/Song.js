@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const songSchema = new mongoose.Schema({
   name: { type: String, required: true },
   artist: { type: String },
-  song: { type: String },
   img: { type: String },
   duration: { type: String },
   uri: { type: String },

@@ -3,12 +3,21 @@ const typeDefs = `
         _id: ID 
         email: String!
         password: String!
+        playlists: [Playlist]!
     }
     type Playlist {
         _id: ID
         name: String!
         img: String
-        songs: [String]!
+        songs: [Song]!
+    }
+
+    type Song {
+        _id: ID
+        name: String!
+        uri: String!
+        artist: String
+        duration: String
     }
 
     type Auth {
@@ -26,7 +35,7 @@ const typeDefs = `
     type Mutation {
         addUser(email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        addPlaylist(name: String!, img: String, songs: [String]!): Playlist
+        addPlaylist(name: String!, img: String, songs: [Song]!): Playlist
     }
 `;
 

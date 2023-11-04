@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_PLAYLIST } from '../../utils/mutations';
-import AddedSong from '../../components/AddedSong/AddedSong';
-import Navbar from '../../components/Navbar/Navbar';
-import './MakePlaylist.css';
+import { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_PLAYLIST } from "../../utils/mutations";
+import AddedSong from "../../components/AddedSong/AddedSong";
+import Navbar from "../../components/Navbar/Navbar";
+import "./MakePlaylist.css";
 
 const MakePlaylist = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
-  const [playlistName, setPlaylistName] = useState('');
+  const [playlistName, setPlaylistName] = useState("");
   const [playlist, { err }] = useMutation(ADD_PLAYLIST);
 
   const handleCreatePlaylistWithSong = async (e) => {
@@ -19,13 +19,28 @@ const MakePlaylist = () => {
     //create a playlist for that user
     //pass in our list of songs
     try {
+      //Need to add token
+      const userToken = localStorage.getItem("id_token");
+      let headers = "";
+      if (userToken) {
+        headers = {
+          Authorization: `Bearer ${userToken}`,
+        };
+      } else {
+        throw new Error("Authentication Failed!");
+      }
+
+      console.log(headers);
+
       const newSongArray = [];
       for (const song of selectedSongs) {
         newSongArray.push({ name: song.name, uri: song.uri });
       }
       console.log(newSongArray);
+      console.log(playlistName);
       const mutationResponse = await playlist({
-        varibles: { name: playlistName, songs: newSongArray },
+        variables: { name: playlistName, songs: newSongArray },
+        context: { headers },
       });
       console.log(mutationResponse);
     } catch (err) {
@@ -34,27 +49,27 @@ const MakePlaylist = () => {
   };
 
   useEffect(() => {
-    if (searchQuery === '') {
+    if (searchQuery === "") {
       setSongList([]);
     } else {
       // Make a search request to Spotify API when the search query changes
-      const clientId = 'f4f10d8cdc4c43cfb9696c430ba1cb5a';
-      const clientSecret = '72ab0302629e417cb4ca0c834c4479e3';
-      const baseUrl = 'https://api.spotify.com/v1/';
+      const clientId = "f4f10d8cdc4c43cfb9696c430ba1cb5a";
+      const clientSecret = "72ab0302629e417cb4ca0c834c4479e3";
+      const baseUrl = "https://api.spotify.com/v1/";
 
       const getAccessToken = async (clientId, clientSecret) => {
-        const tokenUrl = 'https://accounts.spotify.com/api/token';
+        const tokenUrl = "https://accounts.spotify.com/api/token";
         const data = new URLSearchParams();
-        data.append('grant_type', 'client_credentials');
+        data.append("grant_type", "client_credentials");
 
         const auth = btoa(`${clientId}:${clientSecret}`);
         const headers = {
           Authorization: `Basic ${auth}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          "Content-Type": "application/x-www-form-urlencoded",
         };
 
         const response = await fetch(tokenUrl, {
-          method: 'POST',
+          method: "POST",
           headers,
           body: data,
         });
@@ -63,7 +78,7 @@ const MakePlaylist = () => {
       };
 
       getAccessToken(clientId, clientSecret).then((accessToken) => {
-        const type = 'track';
+        const type = "track";
         const limit = 10; // Number of results to display
 
         const endpoint = `search?q=${encodeURIComponent(
@@ -81,7 +96,7 @@ const MakePlaylist = () => {
             setSongList(searchResults.tracks.items);
           })
           .catch((error) => {
-            console.error('Error fetching data from Spotify:', error);
+            console.error("Error fetching data from Spotify:", error);
           });
       });
     }
@@ -171,7 +186,7 @@ const MakePlaylist = () => {
           <button
             onClick={handleCreatePlaylistWithSong}
             className="btn"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             type="submit"
           >
             Submit Playlist Name with Desired Songs

@@ -43,7 +43,9 @@ const resolvers = {
     addPlaylist: async (parent, { name, songs, img }, context) => {
       try {
         // Step 1: Create the playlist
+        console.log("HERE");
         const playlist = await Playlist.create({ name, img });
+        console.log(playlist);
 
         // Step 2: Create song documents and associate them with the playlist
         const songPromises = songs.map(
@@ -59,6 +61,7 @@ const resolvers = {
           { $addToSet: { songs: { $each: songDocs.map((song) => song._id) } } },
           { new: true }
         );
+        console.log(updatedPlaylist);
 
         console.log(context.user);
         // Step 4: Update the user's document to include the new playlist
