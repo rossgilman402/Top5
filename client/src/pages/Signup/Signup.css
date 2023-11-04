@@ -27,9 +27,9 @@ body {
   height: 25px;
   width: 250px;
   padding: 10px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   border-radius: 5px;
-  background-color: rgb(46, 46, 46);
+  background-color: #161925;
   color: white;
 }
 
@@ -46,11 +46,12 @@ body {
   padding: 10px 50px;
   border-radius: 20px;
   border: none;
-  background-color: #1ed760;
-  color: black;
+  background-color: #828489;
+  color: white;
   margin: 20px 0 20px 0;
   cursor: pointer;
   font-weight: bold;
+  transform: 0.7s ease;
 }
 
 .btn:hover {
