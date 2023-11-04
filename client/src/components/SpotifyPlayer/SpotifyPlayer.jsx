@@ -1,78 +1,75 @@
 import React, { useEffect, useState } from 'react';
-import './SpotifyPlayer.css'; // Ensure this file contains the necessary styles
+import './SpotifyPlayer.css';
 
-const SpotifyPlayer = ({ accessToken }) => {
+const SpotifyPlayer = ({ accessToken, playlistUri }) => {
   const [player, setPlayer] = useState(null);
-  const [currentTrack, setCurrentTrack] = useState({
-    albumImageUrl: '', // Placeholder for album image URL
-    title: 'Track Title', // Placeholder for track title
-    artist: 'Track Artist', // Placeholder for artist name
-  });
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+
+  // Function to fetch playlist tracks from Spotify API
+  const fetchPlaylistTracks = async () => {
+    // Implement the API call to fetch tracks using the playlistUri and accessToken
+    // Update the playlistTracks state with the fetched tracks
+  };
 
   useEffect(() => {
-    if (accessToken) {
-      const script = document.createElement('script');
-      script.src = 'https://sdk.scdn.co/spotify-player.js';
-      script.async = true;
-      document.body.appendChild(script);
-
-      window.onSpotifyWebPlaybackSDKReady = () => {
-        const spotifyPlayer = new window.Spotify.Player({
-          name: 'Web Playback SDK Quick Start Player',
-          getOAuthToken: cb => { cb(accessToken); },
-        });
-
-        // Event listeners for player state
-        spotifyPlayer.addListener('player_state_changed', state => {
-          // Update current track state here
-          // You will need to extract the current track information from the state
-          // and update setCurrentTrack accordingly
-        });
-
-        // Ready
-        spotifyPlayer.addListener('ready', ({ device_id }) => {
-          console.log('Ready with Device ID', device_id);
-        });
-
-        // Not Ready
-        spotifyPlayer.addListener('not_ready', ({ device_id }) => {
-          console.log('Device ID has gone offline', device_id);
-        });
-
-        setPlayer(spotifyPlayer);
-        spotifyPlayer.connect();
-      };
+    if (playlistUri && accessToken) {
+      fetchPlaylistTracks();
     }
-  }, [accessToken]);
 
-  // Example control functions
-  const play = () => {
-    player.resume().then(() => {
-      console.log('Resumed!');
-    });
+    // Set up the Spotify player
+    // ...
+
+  }, [accessToken, playlistUri]);
+
+  // Function to handle track selection
+  const selectTrack = (index) => {
+    // Implement the logic to play the selected track using Spotify API
+    setCurrentTrackIndex(index);
   };
 
-  const pause = () => {
-    player.pause().then(() => {
-      console.log('Paused!');
-    });
+  // Function to play the next track
+  const playNextTrack = () => {
+    const nextTrackIndex = (currentTrackIndex + 1) % playlistTracks.length;
+    selectTrack(nextTrackIndex);
   };
 
-  // Render player controls
+  // Function to play the previous track
+  const playPreviousTrack = () => {
+    const prevTrackIndex = (currentTrackIndex - 1 + playlistTracks.length) % playlistTracks.length;
+    selectTrack(prevTrackIndex);
+  };
+
+  // Render playlist tracks
+  const renderPlaylistTracks = () => {
+    return playlistTracks.map((track, index) => (
+      <div key={index} onClick={() => selectTrack(index)} className="track-item">
+        <img src={track.albumImageUrl} alt={track.name} className="track-image" />
+        <div className="track-details">
+          <div className="track-title">{track.name}</div>
+          <div className="track-artist">{track.artists.join(', ')}</div>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div className="player-container">
+      <div className="playlist-tracks-container">
+        {renderPlaylistTracks()}
+      </div>
       <div className="img-container">
-        {/* Placeholder for album art */}
-        <img src={currentTrack.albumImageUrl} alt="Album Art" />
+        <img src={playlistTracks[currentTrackIndex]?.albumImageUrl} alt={playlistTracks[currentTrackIndex]?.name} />
       </div>
       <div className="track-info">
-        <h2 id="title">{currentTrack.title}</h2>
-        <h3 id="artist">{currentTrack.artist}</h3>
+        <h2 id="title">{playlistTracks[currentTrackIndex]?.name}</h2>
+        <h3 id="artist">{playlistTracks[currentTrackIndex]?.artists.join(', ')}</h3>
       </div>
       <div className="spotify-controls">
-        <button onClick={play}>Play</button>
-        <button onClick={pause}>Pause</button>
-        {/* Add more controls as needed */}
+        <button onClick={playPreviousTrack}>Previous</button>
+        <button onClick={() => {}}>Play</button>
+        <button onClick={() => {}}>Pause</button>
+        <button onClick={playNextTrack}>Next</button>
       </div>
     </div>
   );
