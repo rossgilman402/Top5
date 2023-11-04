@@ -15,6 +15,9 @@ const resolvers = {
     getSinglePlaylist: async (_, { playlistId }) => {
       return Playlist.findOne({ _id: playlistId });
     },
+    getSingleSong: async (_, { songId }) => {
+      return Song.findOne({ _id: songId });
+    },
   },
   Mutation: {
     addUser: async (parent, { email, password }) => {
@@ -61,7 +64,7 @@ const resolvers = {
         );
 
         console.log(context.user);
-        // Step 4: Update the user's document to include the new playlist
+        // Step 4: Update the user's document to include the new playlist with name and songs
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { playlists: updatedPlaylist._id } },

@@ -10,6 +10,11 @@ const typeDefs = `
         img: String
         songs: [String]!
     }
+    type Song {
+        _id: ID
+        name: String!
+        uri: String!
+    }
 
     type Auth {
         token: ID!
@@ -21,6 +26,7 @@ const typeDefs = `
         getSingleUser(userId: ID!): User
         getPlaylists: [Playlist]
         getSinglePlaylist(playlistId: ID!): Playlist 
+        getSingleSong: (songId: ID!): Song
     }
 
     type Mutation {
