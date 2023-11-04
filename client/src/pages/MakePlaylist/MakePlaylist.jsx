@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_PLAYLIST } from '../../utils/mutations';
 import AddedSong from '../../components/AddedSong/AddedSong';
 import Navbar from '../../components/Navbar/Navbar';
-import './MakePlaylist.css';
+import './MakePlayList.css';
 
 const MakePlaylist = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -150,7 +150,7 @@ const MakePlaylist = () => {
                   className="search-btn"
                   onClick={() => handleSongClick(song)}
                 >
-                  {song.name}
+                  <span className="song-title">{song.name}</span>
                 </button>
               </li>
             ))}

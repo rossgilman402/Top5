@@ -49,7 +49,7 @@ const Signup = () => {
         </p>
       ) : (
         <div className="signup-container">
-          <h1>Sign-Up!</h1>
+          <h1>Sign Up!</h1>
           <img src={Top5} alt="Top5 Logo"></img>
           <form onSubmit={handleFormSubmit}>
             <label htmlFor="email">Email:</label>
