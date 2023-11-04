@@ -3,8 +3,10 @@ const { signToken, AuthenticationError } = require("../utils/auth.js");
 
 const resolvers = {
   Query: {
-    getUsers: async () => {
-      return User.find({});
+    getUsers: async (context) => {
+      if (context.user) {
+        return User.find({}).populate("playlists");
+      }
     },
     getPlaylists: async () => {
       return Playlist.find({});
@@ -43,37 +45,28 @@ const resolvers = {
 
       return { token, user };
     },
-    addPlaylist: async (parent, { name, songs, img }, context) => {
+    addPlaylist: async (parent, { name }, context) => {
+      console.log(context.user);
+      if (context.user) {
+        const playlist = await Playlist.create({ name });
+
+        const test = await User.findByIdAndUpdate(context.user._id, {
+          $push: { playlists: playlist },
+        });
+        console.log(test);
+        return playlist;
+      }
+    },
+    addSong: async (parent, { name, uri }, context) => {
       try {
-        // Step 1: Create the playlist
-        const playlist = await Playlist.create({ name, img });
+        // Step 1: Create the song
+        const song = await Song.create({ name, uri });
 
-        // Step 2: Create song documents and associate them with the playlist
-        const songPromises = songs.map(
-          async (song) =>
-            await Song.create({ name: song, playlist: playlist._id })
-        );
-
-        const songDocs = await Promise.all(songPromises);
-
-        // Step 3: Add created songs to the playlist through playlist Id
-        const updatedPlaylist = await Playlist.findOneAndUpdate(
-          { _id: playlist._id },
-          { $addToSet: { songs: { $each: songDocs.map((song) => song._id) } } },
-          { new: true }
-        );
-
-        console.log(context.user);
-        // Step 4: Update the user's document to include the new playlist with name and songs
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { playlists: updatedPlaylist._id } },
-          { new: true }
-        );
-
-        return updatedPlaylist;
+        // Step 2: You can choose to associate the song with a playlist later
+        // For now, return the created song
+        return song;
       } catch (error) {
-        throw new Error("Playlist creation failed");
+        throw new Error("Song creation failed");
       }
     },
   },
