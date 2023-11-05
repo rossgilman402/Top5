@@ -5,15 +5,11 @@ const FeaturePlaylist = () => {
   return (
     <div className="featured-container">
       <div className="feature-playlist">
-        <div className="circle">
-          <div className="play-button">
-            {/* Change this to link we decide on */}
-            <Link to="/your-playlist-page">
-              <i className="fas fa-play"></i>
-            </Link>
+        <Link className="link" to="/chat">
+          <div className="circle">
+            <div className="rotating-text">Featured Playlist</div>
           </div>
-          <div className="rotating-text">Featured Playlist</div>
-        </div>
+        </Link>
       </div>
     </div>
   );

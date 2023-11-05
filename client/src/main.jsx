@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
-import Signup from "./pages/Signup/Signup.jsx";
+import Chat from "./pages/Chat.jsx";
 import MakePlaylist from "./pages/MakePlaylist/MakePlaylist";
 import SinglePlaylist from "./pages/SinglePlaylist";
 
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
         element: <SinglePlaylist />,
       },
       {
-        path: "/Signup",
-        element: <Signup />,
+        path: "/chat",
+        element: <Chat />,
       },
     ],
   },
