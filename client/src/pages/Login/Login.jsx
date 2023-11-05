@@ -1,18 +1,18 @@
-import "./Login.css";
-import Top5 from "../../assets/top5-logo.png";
-import SpotifyLogo from "../../assets/spotify-logo.png";
-import SoundCloudLogo from "../../assets/soundcloud.png";
+import './Login.css';
+import Top5 from '../../assets/top5-logo.png';
+import SpotifyLogo from '../../assets/spotify-logo.png';
+import SoundCloudLogo from '../../assets/soundcloud.png';
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutations";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
 
-import Auth from "../../utils/auth";
+import Auth from '../../utils/auth';
 
 // eslint-disable-next-line no-unused-vars
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -41,13 +41,13 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     });
   };
 
   const spotifyClick = () => {
-    window.open("http://localhost:3000/auth/spotify", "_self");
+    window.open('http://localhost:3000/auth/spotify', '_self');
   };
 
   return (
@@ -79,7 +79,7 @@ const Login = (props) => {
               value={formState.password}
               onChange={handleChange}
             />
-            <button className="btn" style={{ cursor: "pointer" }} type="submit">
+            <button className="submit-btn" type="submit">
               Submit
             </button>
           </form>
@@ -87,7 +87,7 @@ const Login = (props) => {
             <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
           )}
           <p>
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?{' '}
             <Link to="/Signup">Sign up for Top5</Link>
           </p>
           <p>Or sign in with</p>
