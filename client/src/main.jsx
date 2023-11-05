@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SpotifyAuthHandler from './components/SpotifyAuthHandler'; // Import the SpotifyAuthHandler component
 
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       {
         path: "/Signup",
         element: <Signup />,
+      },
+      // Add the SpotifyAuthHandler route
+      {
+        path: "/spotify-auth-success",
+        element: <SpotifyAuthHandler />,
       },
     ],
   },

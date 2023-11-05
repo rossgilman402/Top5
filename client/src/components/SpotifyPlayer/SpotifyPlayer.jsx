@@ -1,79 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import './SpotifyPlayer.css'; // Ensure this file contains the necessary styles
 
-const SpotifyPlayer = ({ accessToken }) => {
-  const [player, setPlayer] = useState(null);
-  const [currentTrack, setCurrentTrack] = useState({
-    albumImageUrl: '', // Placeholder for album image URL
-    title: 'Track Title', // Placeholder for track title
-    artist: 'Track Artist', // Placeholder for artist name
-  });
+const SpotifyPlayer = () => {
+  
+  const [token,setToken]=useState('')
+  const [uri,setUri] =useState('')
+  
+  
+  
+  const clientId = "f4f10d8cdc4c43cfb9696c430ba1cb5a";
+      const clientSecret = "72ab0302629e417cb4ca0c834c4479e3";
+    
 
+      const getAccessToken = async (clientId, clientSecret) => {
+        const tokenUrl = "https://accounts.spotify.com/api/token";
+        const data = new URLSearchParams();
+        data.append("grant_type", "client_credentials");
+
+        const auth = btoa(`${clientId}:${clientSecret}`);
+        const headers = {
+          Authorization: `Basic ${auth}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        };
+
+        const response = await fetch(tokenUrl, {
+          method: "POST",
+          headers,
+          body: data,
+        });
+        const tokenData = await response.json();
+        return tokenData.access_token;}
+  
+  getAccessToken (clientId,clientSecret).then(token=>setToken(token))
+  setUri ("spotify:track:1IVSGg2yMoeMMTDx72qez4")
+  console.log(token);
+  
+  
   useEffect(() => {
-    if (accessToken) {
+    if (token) {
       const script = document.createElement('script');
       script.src = 'https://sdk.scdn.co/spotify-player.js';
       script.async = true;
       document.body.appendChild(script);
 
       window.onSpotifyWebPlaybackSDKReady = () => {
-        const spotifyPlayer = new window.Spotify.Player({
+        const player = new window.Spotify.Player({
           name: 'Web Playback SDK Quick Start Player',
-          getOAuthToken: cb => { cb(accessToken); },
+          getOAuthToken: cb => { cb(token); },
+          volume: 0.5
         });
 
-        // Event listeners for player state
-        spotifyPlayer.addListener('player_state_changed', state => {
-          // Update current track state here
-          // You will need to extract the current track information from the state
-          // and update setCurrentTrack accordingly
-        });
-
-        // Ready
-        spotifyPlayer.addListener('ready', ({ device_id }) => {
+        player.addListener('ready', ({ device_id }) => {
           console.log('Ready with Device ID', device_id);
+          play(device_id, uri, token);
         });
 
-        // Not Ready
-        spotifyPlayer.addListener('not_ready', ({ device_id }) => {
-          console.log('Device ID has gone offline', device_id);
-        });
-
-        setPlayer(spotifyPlayer);
-        spotifyPlayer.connect();
+        player.connect();
       };
     }
-  }, [accessToken]);
 
-  // Example control functions
-  const play = () => {
-    player.resume().then(() => {
-      console.log('Resumed!');
-    });
-  };
+    // Play a specified track on the Web Playback SDK's device ID
+    function play(device_id, uri, token) {
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ uris: [uri] }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      });
+    }
 
-  const pause = () => {
-    player.pause().then(() => {
-      console.log('Paused!');
-    });
-  };
+    // Cleanup function to remove the script and disconnect the player
+    return () => {
+      if (script) {
+        script.remove();
+      }
+      if (player) {
+        player.disconnect();
+      }
+    };
+  }, [token, uri]);
 
-  // Render player controls
   return (
     <div className="player-container">
-      <div className="img-container">
-        {/* Placeholder for album art */}
-        <img src={currentTrack.albumImageUrl} alt="Album Art" />
-      </div>
-      <div className="track-info">
-        <h2 id="title">{currentTrack.title}</h2>
-        <h3 id="artist">{currentTrack.artist}</h3>
-      </div>
-      <div className="spotify-controls">
-        <button onClick={play}>Play</button>
-        <button onClick={pause}>Pause</button>
-        {/* Add more controls as needed */}
-      </div>
+      {/* Player UI goes here */}
     </div>
   );
 };
