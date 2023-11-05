@@ -1,6 +1,6 @@
-import Auth from '../../utils/auth';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
@@ -13,8 +13,8 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link className="link" to="/Playlist">
-            PlayLists
+          <Link className="link" to="/chat">
+            Chat
           </Link>
         </li>
         <li>

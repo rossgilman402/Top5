@@ -12,22 +12,30 @@ const SingularPlaylistEl = () => {
   ];
   return (
     <>
+      <div className="button-box">
+        <Link to="/makeplaylist">
+          <button className="button">Make Playlist</button>
+        </Link>
+      </div>
       <h1 className="playlist-feed">Playlist Feed</h1>
       {songs.map((song, index) => (
-        <div key={index} className="details">
-          <Link to={`playlist-page`}> </Link>
-          {/* <img src={song.artworkUrl} alt={song.name} /> */}
-          <img
-            className="song-art"
-            src="https://via.placeholder.com/150"
-            alt="song-art"
-          />
-          <div className="playlist-info">
-            <h4 className="playlist">{song}</h4>
-            <p className="artist">song.artist</p>
-            <h5 className="duration">song.duration</h5>
-          </div>
-        </div>
+        <>
+          <Link to="./Playlist">
+            <div key={index} className="details">
+              {/* <img src={song.artworkUrl} alt={song.name} /> */}
+              <img
+                className="song-art"
+                src="https://via.placeholder.com/150"
+                alt="song-art"
+              />
+              <div className="playlist-info">
+                <h4 className="playlist">{song}</h4>
+                <p className="artist">song.artist</p>
+                <h5 className="duration">song.duration</h5>
+              </div>
+            </div>
+          </Link>
+        </>
       ))}
     </>
   );
