@@ -2,15 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
 }
-
+.featured-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+}
 .circle {
-  background-color: #3498db;
+  background-color: #23395b;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +31,7 @@
 .rotating-text {
   color: #fff;
   animation: spin 4s linear infinite;
+  font-size: 24px;
 }
 
 @keyframes spin {
