@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./singularPlaylist.css";
 
 const SingularPlaylistEl = () => {
   const songs = [
@@ -11,6 +12,7 @@ const SingularPlaylistEl = () => {
   ];
   return (
     <>
+      <h1 className="playlist-feed">Playlist Feed</h1>
       {songs.map((song, index) => (
         <div key={index} className="details">
           <Link to={`playlist-page`}> </Link>

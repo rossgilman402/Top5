@@ -7,7 +7,6 @@ const Home = () => {
     <>
       <Navbar />
       <FeaturedPlayList />
-      <h1>Playlist Feed</h1>
       <SingularPlaylistEl />
       <SpotifyPlayer />
     </>
