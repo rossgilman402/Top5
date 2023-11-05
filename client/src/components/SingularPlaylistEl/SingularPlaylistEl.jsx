@@ -40,7 +40,7 @@ const SingularPlaylistEl = () => {
               <div className="playlist-info">
                 <h4 className="playlist-title">{playlist}</h4>
                 <p className="user">user</p>
-                <h5 className="duration">playlist.songs.length</h5>
+                <h5 className="duration">playlist.length</h5>
               </div>
             </div>
           </Link>
