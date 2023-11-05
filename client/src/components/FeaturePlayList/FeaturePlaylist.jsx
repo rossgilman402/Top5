@@ -14,20 +14,21 @@ const FeaturePlaylist = () => {
           </Link>
         </div>
       </div>
-      <div className="details">
-        <Link to={`playlist-page`}> </Link>
-        {/* <img src={song.artworkUrl} alt={song.name} /> */}
-        <img
-          className="song-art"
-          src="https://via.placeholder.com/150"
-          alt="song-art"
-        />
-        <div className="playlist-info">
-          <h4 className="playlist">{playlist}</h4>
-          <p className="artist">song.artist</p>
-          <h5 className="duration">song.duration</h5>
+      <Link to="/Playlist">
+        <div className="details">
+          {/* <img src={song.artworkUrl} alt={song.name} /> */}
+          <img
+            className="song-art"
+            src="https://via.placeholder.com/150"
+            alt="song-art"
+          />
+          <div className="playlist-info">
+            <h4 className="playlist">{playlist}</h4>
+            <p className="artist">song.artist</p>
+            <h5 className="duration">song.duration</h5>
+          </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
