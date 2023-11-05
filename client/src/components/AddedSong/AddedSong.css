@@ -24,6 +24,10 @@
   transition: 0.2s ease;
 }
 
+.remove-btn:hover {
+  background-color: #6e727b;
+}
+
 .song-name {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;

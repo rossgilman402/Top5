@@ -21,6 +21,38 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  background: linear-gradient(
+    41deg,
+    rgb(55, 65, 70) 0%,
+    rgba(35, 57, 91, 1) 60%,
+    rgb(32, 39, 52) 100%
+  );
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
+}
+
+@-webkit-keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .details {

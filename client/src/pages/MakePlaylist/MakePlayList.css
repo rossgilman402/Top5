@@ -216,6 +216,8 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .search-btn {
@@ -247,6 +249,45 @@ html {
   /* letter-spacing: 1px; */
   text-transform: uppercase;
   transition: 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #32353c;
+}
+
+.btn {
+  background-color: #272a30;
+  display: block;
+  /* width: 100%; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  color: #ededed;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 12px;
+  margin-top: 5px;
+  /* margin-left: 20px; */
+  margin-right: 20px;
+  cursor: pointer;
+  /* border-radius: 5px; */
+  /* float: right; */
+  /* margin-right: 10px; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  /* letter-spacing: 1px; */
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #62656b;
 }
 
 .playlist-container::before {
@@ -281,6 +322,7 @@ html {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  padding: 20px;
 }
 
 .search-title {
