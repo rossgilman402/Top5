@@ -16,6 +16,12 @@
   margin-top: 5px;
 }
 
+.playlist-feed {
+  display: flex;
+  justify-content: center;
+  color: #ecebe1;
+}
+
 .playlist-details {
   display: flex;
   flex-direction: row;
@@ -111,7 +117,7 @@
 }
 
 .button {
-  background-color: #272a30;
+  background-color: #4b505b;
   display: block;
   width: 100%;
   white-space: nowrap;
@@ -139,6 +145,11 @@
   /* letter-spacing: 1px; */
   text-transform: uppercase;
   transition: 0.2s ease;
+}
+
+.button:hover {
+  background-color: #363739;
+  transform: 0.2s ease;
 }
 
 Link {
