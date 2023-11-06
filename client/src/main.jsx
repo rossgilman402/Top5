@@ -9,7 +9,7 @@ import Chat from "./pages/Chat/Chat.jsx";
 import MakePlaylist from "./pages/MakePlaylist/MakePlaylist";
 import SinglePlaylist from "./pages/SinglePlaylist";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
-import SignUp from "./pages/Signup/Signup.jsx";
+import Signup from "./pages/Signup/Signup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute element={<Chat />} />,
       },
       {
-        path: "/SignUp",
-        element: <ProtectedRoute element={<SignUp />} />,
+        path: "/Signup",
+        element: <Signup />,
       },
     ],
   },

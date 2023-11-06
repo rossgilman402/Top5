@@ -27,13 +27,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PLAYLIST = gql`
-  mutation AddPlaylist($name: String!, $songs: [String]!, $img: String) {
-    addPlaylist(name: $name, songs: $songs, img: $img) {
-      playlist {
-        _id
+  mutation AddPlaylist($name: String!, $songs: [SongInput]) {
+    addPlaylistWithSongs(name: $name, songs: $songs) {
+      _id
+      name
+      songs {
         name
-        img
-        songs
+        uri
+        _id
       }
     }
   }
