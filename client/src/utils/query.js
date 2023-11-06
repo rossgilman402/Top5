@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_PLAYLIST = gql`
   query GetPlaylists {
@@ -6,11 +6,6 @@ export const GET_PLAYLIST = gql`
       _id
       img
       name
-      songs {
-        _id
-        name
-        uri
-      }
     }
   }
 `;
@@ -24,6 +19,8 @@ export const GET_SINGLE_PLAYLIST = gql`
         _id
         name
         uri
+        artist
+        img
       }
     }
   }

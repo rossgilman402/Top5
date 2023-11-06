@@ -10,7 +10,7 @@ const MakePlaylist = () => {
   const [songList, setSongList] = useState([]);
   const [selectedSongs, setSelectedSongs] = useState([]);
   const [playlistName, setPlaylistName] = useState("");
-  const [AddPlaylist, { err }] = useMutation(ADD_PLAYLIST);
+  const [AddPlaylist] = useMutation(ADD_PLAYLIST);
 
   const handleCreatePlaylistWithSong = async (e) => {
     e.preventDefault();
@@ -21,7 +21,13 @@ const MakePlaylist = () => {
     try {
       const newSongArray = [];
       for (const song of selectedSongs) {
-        newSongArray.push({ name: song.name, uri: song.uri });
+        console.log(song);
+        newSongArray.push({
+          name: song.name,
+          uri: song.uri,
+          artist: song.artists[0].name,
+          img: song.album.images[0].url,
+        });
       }
       console.log(newSongArray);
       console.log(playlistName);
