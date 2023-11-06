@@ -23,11 +23,19 @@ const SingularPlaylistEl = () => {
   // ];
 
   const { data } = useQuery(GET_PLAYLIST);
+  console.log('DATA', data);
   let playlists;
   if (data) {
     playlists = data?.getPlaylists;
-    console.log(playlists);
+    console.log('PLAYLISTS', playlists);
   }
+
+  // const { data: userData } = useQuery(GET_USER_EMAIL);
+  // let userEmail;
+  // if (userData) {
+  //   userEmail = userData?.user?.email;
+  //   console.log(userEmail);
+  // }
 
   return (
     <>
@@ -53,7 +61,7 @@ const SingularPlaylistEl = () => {
                 />
                 <div className="playlist-info">
                   <h4 className="playlist-title">{playlist.name}</h4>
-                  <p className="user">user</p>
+                  <p className="user">{playlist.user.email.split('@')[0]}</p>
                 </div>
               </div>
             </Link>
