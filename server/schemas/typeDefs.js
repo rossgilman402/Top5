@@ -17,6 +17,8 @@ const typeDefs = `
     _id: ID
     name: String!
     uri: String!
+    artist: String!
+    img: String
   }
 
   type Message {
@@ -33,6 +35,8 @@ const typeDefs = `
   input SongInput {
     name: String!
     uri: String!
+    artist: String
+    img: String
   }
 
   input PlaylistInput {
