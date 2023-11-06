@@ -1,3 +1,5 @@
+require('dotenv').config(); // Ensure this is at the top
+
 const express = require("express");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -9,8 +11,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-const passportSetup = require("./passport");
-const authRoute = require("./routes/auth-routes");
+//require("./passport")(passport);
+const authRoutes = require("./routes/auth-routes");
+const spotifyAuthRoutes = require("./routes/spotify.auth"); // Make sure this is the correct path
 const cors = require("cors");
 
 const server = new ApolloServer({
@@ -21,23 +24,24 @@ const server = new ApolloServer({
 app.use(
   cookieSession({
     name: "session",
-    keys: ["passsord"],
-    maxAge: 24 * 60 * 60 * 100,
+    keys: [process.env.SESSION_KEY], // Use an environment variable for your session key
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(
-//   cors({
-//     origin: "http://localhost:3001",
-//     methods: "GET, POST, PUT, DELETE",
-//     credentials: true,
-//   })
-// );
-app.use("/auth", authRoute);
 
-// Create a new instance of an Apollo server with the GraphQL schema
+// If you need CORS, you can uncomment and configure it
+// app.use(cors({
+//   origin: "http://localhost:3000", // Your client's URL
+//   methods: "GET, POST, PUT, DELETE",
+//   credentials: true,
+// }));
+
+app.use("/auth", authRoutes);
+app.use("/spotify", spotifyAuthRoutes); // Adding the Spotify auth route
+
 const startApolloServer = async () => {
   await server.start();
 
@@ -51,11 +55,12 @@ const startApolloServer = async () => {
     })
   );
 
+  // Serve the static files from the React app in production
   if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../client/dist")));
+    app.use(express.static(path.join(__dirname, "../client/build")));
 
     app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+      res.sendFile(path.join(__dirname, "../client/build/index.html"));
     });
   }
 
@@ -67,5 +72,4 @@ const startApolloServer = async () => {
   });
 };
 
-// Call the async function to start the server
 startApolloServer();

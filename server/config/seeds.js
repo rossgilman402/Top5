@@ -23,7 +23,7 @@ db.once("open", async () => {
 
   await cleanDB("Playlist", "playlists");
 
-  await Playlist.create(userSeeds);
+  // await Playlist.create(userSeeds);
 
   console.log("all done!");
   process.exit(0);
