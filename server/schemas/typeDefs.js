@@ -19,6 +19,12 @@ const typeDefs = `
     uri: String!
   }
 
+  type Message {
+    _id: ID!
+    text: String!
+    user: User!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -41,13 +47,16 @@ const typeDefs = `
     getPlaylists: [Playlist]
     getSinglePlaylist(playlistId: ID!): Playlist 
     getSingleSong(songId: ID!): Song
+    getMessages: [Message]
   }
 
   type Mutation {
     addUser(email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addPlaylist(name: String): Playlist
+    addPlaylistWithSongs(name: String!, songs: [SongInput]): Playlist
     addSong(name: String, uri: String): Song
+    createMessage(text: String!): Message
   }
 `;
 
