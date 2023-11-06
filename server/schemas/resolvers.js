@@ -9,13 +9,17 @@ const resolvers = {
       }
     },
     getPlaylists: async () => {
-      return Playlist.find({}).populate('songs');
+      return Playlist.find({}).populate('songs').populate({ path: 'user' });
     },
     getSingleUser: async (_, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId })
+        .populate('playlists')
+        .populate({ path: 'playlists', populate: 'songs' });
     },
     getSinglePlaylist: async (_, { playlistId }) => {
-      return Playlist.findOne({ _id: playlistId }).populate('songs');
+      return Playlist.findOne({ _id: playlistId })
+        .populate('songs')
+        .populate({ path: 'user' });
     },
     getSingleSong: async (_, { songId }) => {
       return Song.findOne({ _id: songId });
@@ -77,19 +81,26 @@ const resolvers = {
       try {
         //First we create a new playlist
         console.log(name, songs);
-        const newPlaylist = await Playlist.create({ name });
-        console.log(newPlaylist.songs);
+        const newPlaylist = await Playlist.create({
+          name,
+          user: context.user._id,
+        });
+        console.log('new playlist', newPlaylist.songs);
         //add our songs to the playlist
         for (const song of songs) {
           const newSong = await Song.create({ ...song });
           newPlaylist.songs.push(newSong._id);
           await newPlaylist.save();
         }
-        const populatedPlaylist = newPlaylist.populate('songs');
-        console.log(populatedPlaylist);
-        console.log(context.user._id);
+        const populatedPlaylist = await newPlaylist.populate('songs');
+        console.log('populated', populatedPlaylist);
+        console.log('context user', context.user._id);
         const user = await User.findOne({ _id: context.user._id });
         console.log('USER', user);
+
+        user.playlists.push(newPlaylist._id);
+        await user.save();
+        console.log('user', user);
 
         //add the playlist to a user
         return populatedPlaylist;

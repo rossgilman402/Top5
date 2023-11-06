@@ -3,7 +3,7 @@ const typeDefs = `
     _id: ID 
     email: String!
     password: String!
-    playlist: [Playlist]
+    playlists: [Playlist]
   }
 
   type Playlist {
@@ -11,13 +11,14 @@ const typeDefs = `
     name: String!
     img: String
     songs: [Song]
+    user: User
   }
 
   type Song {
     _id: ID
     name: String!
     uri: String!
-    artist: String!
+    artist: String
     img: String
   }
 
