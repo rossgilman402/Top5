@@ -14,3 +14,17 @@ export const GET_PLAYLIST = gql`
     }
   }
 `;
+
+export const GET_SINGLE_PLAYLIST = gql`
+  query Query($playlistId: ID!) {
+    getSinglePlaylist(playlistId: $playlistId) {
+      _id
+      name
+      songs {
+        _id
+        name
+        uri
+      }
+    }
+  }
+`;

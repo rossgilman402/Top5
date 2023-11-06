@@ -1,11 +1,12 @@
-import PlayList from "../components/PlayList/index";
+import { useParams } from 'react-router-dom';
+import PlayList from '../components/PlayList/index';
 
 const SinglePlaylist = () => {
-  //
+  let { id } = useParams();
 
   return (
     <div>
-      <PlayList />
+      <PlayList id={id} />
     </div>
   );
 };
