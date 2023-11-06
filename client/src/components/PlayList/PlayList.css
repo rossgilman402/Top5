@@ -35,7 +35,7 @@ div.playlist {
   );
   width: 50%;
   border-radius: 5px;
-  padding-left: 10px;
+  padding-left: 5px;
   color: #ecebe1;
   background-size: 150% 150%;
   -webkit-animation: AnimateBG 7s ease infinite;
@@ -106,6 +106,7 @@ div.playlist {
   border-radius: 15px;
   /* border: 1px solid #ccc; */
   padding: 10px;
+  padding-right: 5px;
 }
 
 .playlist-img {
