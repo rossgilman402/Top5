@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(40, 40, 40);
+  background-color: #161925;
 }
 
 .main-container {
@@ -8,6 +8,12 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  background-color: #161925;
+  /* add animated gradient */
+  background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b);
+  background-size: 150% 150%;
+  -webkit-animation: AnimateBG 7s ease infinite;
+  animation: AnimateBG 7s ease infinite;
 }
 
 .login-container {
@@ -27,9 +33,9 @@ body {
   height: 25px;
   width: 250px;
   padding: 10px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   border-radius: 5px;
-  background-color: rgb(46, 46, 46);
+  background-color: #161925;
   color: white;
 }
 
@@ -42,21 +48,28 @@ body {
   margin-top: 10px;
 }
 
-.btn {
+.submit-btn {
   padding: 10px 50px;
   border-radius: 20px;
   border: none;
-  background-color: #1ed760;
-  color: black;
+  background-color: #828489;
+  color: white;
   margin: 20px 0 20px 0;
   cursor: pointer;
   font-weight: bold;
+  transform: 0.7s ease;
 }
 
-.btn:hover {
+.submit-btn:hover {
+  background-color: #64676c;
+  color: white;
+  transform: 0.2s ease;
+}
+
+/* .btn:hover {
   font-size: 16px;
   padding: 12px 75px;
-}
+} */
 
 .login-container p {
   color: lightgrey;
@@ -90,4 +103,30 @@ body {
 
 .goback {
   margin-bottom: 10px;
+}
+
+.form-input {
+  background-color: #272a30;
+  border: none;
+  color: #ededed;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* float: right; */
+  /* margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  /* text-transform: uppercase; */
+  transition: 0.2s ease;
 }

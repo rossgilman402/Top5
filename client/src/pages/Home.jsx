@@ -1,12 +1,15 @@
-import Navbar from '../components/Navbar/Navbar';
-import PlayList from '../components/PlayList';
-import SpotifyPlayer from '../components/SpotifyPlayer/SpotifyPlayer';
+import Navbar from "../components/Navbar/Navbar";
+import FeaturedPlayList from "../components/FeaturePlayList/FeaturePlaylist";
+import SpotifyPlayer from "../components/SpotifyPlayer/SpotifyPlayer";
+import SingularPlaylistEl from "../components/SingularPlaylistEl/SingularPlaylistEl";
 const Home = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <SpotifyPlayer/>
-    </div>
+      <FeaturedPlayList />
+      <SingularPlaylistEl />
+      <SpotifyPlayer />
+    </>
   );
 };
 
