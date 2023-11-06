@@ -1,53 +1,44 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+
 import './Login.css';
 import Top5 from '../../assets/top5-logo.png';
 import SpotifyLogo from '../../assets/spotify-logo.png';
 import SoundCloudLogo from '../../assets/soundcloud.png';
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
-
-import Auth from '../../utils/auth';
-
-// eslint-disable-next-line no-unused-vars
-const Login = (props) => {
+const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
-  // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+    setFormState({ ...formState, [name]: value });
   };
 
-  // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
+      const { data } = await login({ variables: { ...formState } });
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
+    setFormState({ email: '', password: '' });
   };
 
   const spotifyClick = () => {
-    window.open('http://localhost:3000/auth/spotify', '_self');
+    const client_id = '0d716f477d2940b8b04257227cc33a80'; // Your Spotify Client ID
+    const response_type = 'code';
+    const redirect_uri = encodeURIComponent('http://localhost:3000/callback'); // Your registered redirect URI
+    const scope = encodeURIComponent('playlist-read-private user-read-email');
+    const state = 'OPTIONAL_STATE'; // Replace with your state value or a method to generate it
+
+    const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&scope=${scope}&state=${state}`;
+
+    window.open(spotifyAuthUrl, '_self');
   };
 
   return (
@@ -57,12 +48,12 @@ const Login = (props) => {
       ) : (
         <div className="login-container">
           <h1>Login or Create Account</h1>
-          <img src={Top5} alt="Top5 Logo"></img>
+          <img src={Top5} alt="Top5 Logo" />
           <form onSubmit={handleFormSubmit}>
             <label htmlFor="email">Email:</label>
             <input
               className="form-input"
-              placeholder="Email"
+              placeholder="Your email"
               name="email"
               type="email"
               id="email"
@@ -72,7 +63,7 @@ const Login = (props) => {
             <label htmlFor="password">Password:</label>
             <input
               className="form-input"
-              placeholder="**********"
+              placeholder="Password"
               name="password"
               type="password"
               id="password"
@@ -83,25 +74,18 @@ const Login = (props) => {
               Submit
             </button>
           </form>
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-          )}
-          <p>
-            Don&apos;t have an account?{' '}
-            <Link to="/Signup">Sign up for Top5</Link>
-          </p>
-          <p>Or sign in with</p>
+          {error && <div className="error-message">{error.message}</div>}
+          <p>Don't have an account? <Link to="/Signup">Sign up for Top5</Link></p>
+          <p>Or sign in with:</p>
           <div className="extra-signup">
             <button onClick={spotifyClick}>
-              <img src={SpotifyLogo} alt="Spotify Logo"></img>
+              <img src={SpotifyLogo} alt="Spotify Logo" />
             </button>
             <button>
-              <img src={SoundCloudLogo} alt="Sound Cloud Logo"></img>
+              <img src={SoundCloudLogo} alt="Sound Cloud Logo" />
             </button>
           </div>
-          <Link className="goback" to="/">
-            Go Back
-          </Link>
+          <Link className="goback" to="/">Go Back</Link>
         </div>
       )}
     </div>
