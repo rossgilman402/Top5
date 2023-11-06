@@ -56,7 +56,7 @@ const SingularPlaylistEl = () => {
                 {/* <img src={song.artworkUrl} alt={song.name} /> */}
                 <img
                   className="playlist-art"
-                  src="https://via.placeholder.com/150"
+                  src={playlist.songs[0].img}
                   alt="song-art"
                 />
                 <div className="playlist-info">
