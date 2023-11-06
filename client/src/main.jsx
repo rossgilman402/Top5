@@ -1,17 +1,18 @@
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login/Login.jsx";
-import Chat from "./pages/Chat.jsx";
-import MakePlaylist from "./pages/MakePlaylist/MakePlaylist";
-import SinglePlaylist from "./pages/SinglePlaylist";
+import Home from './pages/Home.jsx';
+import Login from './pages/Login/Login.jsx';
+import Chat from './pages/Chat.jsx';
+import MakePlaylist from './pages/MakePlaylist/MakePlaylist';
+import SinglePlaylist from './pages/SinglePlaylist';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -19,25 +20,25 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <Login />,
       },
       {
-        path: "/makeplaylist",
-        element: <MakePlaylist />,
+        path: '/makeplaylist',
+        element: <ProtectedRoute element={<MakePlaylist />} />,
       },
       {
-        path: "/playlist",
-        element: <SinglePlaylist />,
+        path: '/playlist',
+        element: <ProtectedRoute element={<SinglePlaylist />} />,
       },
       {
-        path: "/chat",
-        element: <Chat />,
+        path: '/chat',
+        element: <ProtectedRoute element={<Chat />} />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 );

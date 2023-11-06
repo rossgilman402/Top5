@@ -11,6 +11,8 @@ html {
   justify-content: center;
   align-content: center;
   padding: 40px;
+  min-width: 500px;
+  padding-top: 150px;
   /* margin: 10px; */
 }
 
@@ -68,6 +70,7 @@ html {
   border-radius: 60%;
   animation: rotate 9s linear infinite;
   pointer-events: none;
+  min-width: 500px;
 }
 
 .search-input {
@@ -145,9 +148,15 @@ html {
 } */
 
 .search-container {
+  margin-top: 300px;
   margin: 20px;
   padding: 20px;
   display: flex;
+  max-height: 600px;
+  /* max-width: 75%; */
+  width: 500px;
+  /* height: 500px; */
+  overflow-y: auto;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -194,6 +203,10 @@ html {
   margin-top: 20px;
 }
 
+.search-songs {
+  width: 95%;
+}
+
 .selected-songs {
   width: 500px;
   max-width: 75%;
@@ -203,10 +216,17 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .search-btn {
   background-color: #272a30;
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border: none;
   color: #ededed;
   padding: 5px 10px;
@@ -215,8 +235,8 @@ html {
   /* display: inline-block; */
   font-size: 12px;
   margin-top: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 20px; */
+  margin-right: 20px;
   cursor: pointer;
   border-radius: 5px;
   /* float: right; */
@@ -226,9 +246,48 @@ html {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 12px;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   text-transform: uppercase;
   transition: 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #32353c;
+}
+
+.btn {
+  background-color: #272a30;
+  display: block;
+  /* width: 100%; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  color: #ededed;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 12px;
+  margin-top: 5px;
+  /* margin-left: 20px; */
+  margin-right: 20px;
+  cursor: pointer;
+  /* border-radius: 5px; */
+  /* float: right; */
+  /* margin-right: 10px; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  /* letter-spacing: 1px; */
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #62656b;
 }
 
 .playlist-container::before {
@@ -263,6 +322,7 @@ html {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  padding: 20px;
 }
 
 .search-title {
@@ -298,4 +358,12 @@ html {
   margin: 20px;
   /* background-image: linear-gradient(to right, #272a30, #2b2c4d, #23395b); */
   /* background-size: 150% 150%; */
+}
+
+.song-title {
+  display: inline-block;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
