@@ -61,7 +61,11 @@ const SingularPlaylistEl = () => {
                 />
                 <div className="playlist-info">
                   <h4 className="playlist-title">{playlist.name}</h4>
-                  <p className="user">{playlist.user.email.split('@')[0]}</p>
+                  <p className="user">
+                    {playlist.user.email
+                      ? playlist.user.email.split('@')[0]
+                      : 'Unable to fetch username'}
+                  </p>
                 </div>
               </div>
             </Link>
