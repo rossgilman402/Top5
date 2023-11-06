@@ -14,6 +14,7 @@ const userSchema = new Schema({
     minlength: 5,
   },
   playlists: [{ type: Schema.Types.ObjectId, ref: "playlist" }],
+  messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
 });
 // Set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {
