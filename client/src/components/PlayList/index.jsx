@@ -17,17 +17,15 @@ const PlayList = () => {
   const { data } = useQuery(GET_SINGLE_PLAYLIST, { variables: { playlistId } });
   console.log(playlistId);
   let songs;
-  if (data) {
-    songs = data.getSinglePlaylist.songs;
-    console.log(songs);
-  }
+  songs = data?.getSinglePlaylist?.songs;
+  const title = data?.getSinglePlaylist?.name;
 
   return (
     <>
       <Navbar />
       {/* <container className="playlist-card"> */}
       <div className="playlist">
-        <h1>{data.getSinglePlaylist.name}</h1>
+        <h1>{title}</h1>
         <img src={songs && songs[0].img} alt="song picture"></img>
         {songs &&
           songs.map((song, index) => (

@@ -25,7 +25,7 @@ const SingularPlaylistEl = () => {
   const { data } = useQuery(GET_PLAYLIST);
   let playlists;
   if (data) {
-    playlists = data.getPlaylists;
+    playlists = data?.getPlaylists;
     console.log(playlists);
   }
 
