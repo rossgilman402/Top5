@@ -1,8 +1,12 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_PLAYLIST, GET_SINGLE_PLAYLIST } from '../../utils/query';
+import { useState, useEffect } from 'react';
+
 import './PlayList.css';
-const PlayList = ({}) => {
+const PlayList = () => {
   const songs = [
     'Good Song',
     'Better Song',
@@ -10,6 +14,13 @@ const PlayList = ({}) => {
     'Worst Song',
     'Bad Song',
   ];
+
+  const { id: playlistId } = useParams();
+  const { data } = useQuery(GET_SINGLE_PLAYLIST, { variables: { playlistId } });
+  console.log(playlistId);
+  console.log(data);
+  // const songs2 = data.getSinglePlaylist;
+  // console.log(songs2);
   return (
     <>
       <Navbar />

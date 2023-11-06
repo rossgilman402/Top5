@@ -1,16 +1,16 @@
-const db = require("./connection");
-const { User, Playlist } = require("../models");
-const cleanDB = require("./cleanDB");
-const userSeeds = require("./userSeeds.json");
+const db = require('./connection');
+const { User, Playlist } = require('../models');
+const cleanDB = require('./cleanDB');
+const userSeeds = require('./userSeeds.json');
 
-db.once("open", async () => {
-  await cleanDB("User", "users");
+db.once('open', async () => {
+  await cleanDB('User', 'users');
 
   const userArray = [
-    { email: "rossGilman@gmail.com", password: "password" },
-    { email: "michaelHorton@gmail.com", password: "password" },
-    { email: "clarissaFuller@gmail.com", password: "password" },
-    { email: "stevenFrancuis@gmail.com", password: "password" },
+    { email: 'rossGilman@gmail.com', password: 'password' },
+    { email: 'michaelHorton@gmail.com', password: 'password' },
+    { email: 'clarissaFuller@gmail.com', password: 'password' },
+    { email: 'stevenFrancuis@gmail.com', password: 'password' },
   ];
 
   try {
@@ -21,14 +21,14 @@ db.once("open", async () => {
     console.log(err);
   }
 
-  await cleanDB("Playlist", "playlists");
+  await cleanDB('Playlist', 'playlists');
 
-  await Playlist.create(userSeeds);
+  // await Playlist.create(userSeeds);
 
-  console.log("all done!");
+  console.log('all done!');
   process.exit(0);
 
-  console.log("Users seeded");
+  // console.log('Users seeded');
 
-  process.exit();
+  // process.exit();
 });
