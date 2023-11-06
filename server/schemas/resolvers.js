@@ -1,21 +1,21 @@
-const { User, Playlist, Song, Message } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth.js");
+const { User, Playlist, Song, Message } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth.js');
 
 const resolvers = {
   Query: {
-    getUsers: async (context) => {
+    getUsers: async (_, args, context) => {
       if (context.user) {
-        return User.find({}).populate("playlists");
+        return User.find({}).populate('playlists');
       }
     },
     getPlaylists: async () => {
-      return Playlist.find({});
+      return Playlist.find({}).populate('songs');
     },
     getSingleUser: async (_, { userId }) => {
       return User.findOne({ _id: userId });
     },
     getSinglePlaylist: async (_, { playlistId }) => {
-      return Playlist.findOne({ _id: playlistId });
+      return Playlist.findOne({ _id: playlistId }).populate('songs');
     },
     getSingleSong: async (_, { songId }) => {
       return Song.findOne({ _id: songId });
@@ -83,9 +83,13 @@ const resolvers = {
         for (const song of songs) {
           const newSong = await Song.create({ ...song });
           newPlaylist.songs.push(newSong._id);
+          await newPlaylist.save();
         }
-        const populatedPlaylist = newPlaylist.populate("songs");
+        const populatedPlaylist = newPlaylist.populate('songs');
         console.log(populatedPlaylist);
+        console.log(context.user._id);
+        const user = await User.findOne({ _id: context.user._id });
+        console.log('USER', user);
 
         //add the playlist to a user
         return populatedPlaylist;
@@ -97,7 +101,7 @@ const resolvers = {
       const { user } = context;
       console.log(text, user._id);
       if (!user) {
-        throw new Error("Authentication required to create a message");
+        throw new Error('Authentication required to create a message');
       }
 
       const message = new Message({ text });
