@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_PLAYLIST } from "../../utils/query";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_PLAYLIST } from '../../utils/query';
 
-import "./singularPlaylist.css";
+import './singularPlaylist.css';
 
 const SingularPlaylistEl = () => {
   // const songs = [
@@ -32,7 +32,7 @@ const SingularPlaylistEl = () => {
   return (
     <>
       <div className="button-box">
-        <Link to="/makeplaylist" style={{ "text-decoration": "none" }}>
+        <Link to="/makeplaylist" style={{ 'text-decoration': 'none' }}>
           <button className="button">Make Playlist</button>
         </Link>
       </div>
@@ -40,7 +40,10 @@ const SingularPlaylistEl = () => {
       {playlists &&
         playlists.map((playlist, index) => (
           <>
-            <Link to={"./playlist/" + playlist._id}>
+            <Link
+              to={'./playlist/' + playlist._id}
+              style={{ 'text-decoration': 'none', width: '50%' }}
+            >
               <div key={index} className="playlist-details">
                 {/* <img src={song.artworkUrl} alt={song.name} /> */}
                 <img
