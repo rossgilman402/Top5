@@ -53,6 +53,7 @@ const typeDefs = `
     getSinglePlaylist(playlistId: ID!): Playlist 
     getSingleSong(songId: ID!): Song
     getMessages: [Message]
+    featuredPlaylist: Playlist
   }
 
   type Mutation {
