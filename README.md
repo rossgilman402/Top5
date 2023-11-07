@@ -28,6 +28,7 @@ Once on the Make PLaylist page add a playlist name and then search songs by name
 You can also click on the Daily Featured Playlist to open a chat to talk with your friends about the featured playlist!
 The process should look something like this:
 
+[Usage Video](https://drive.google.com/file/d/14taaL92xKr92hkwHxgABsLWIk9pp1FDC/view?usp=sharing)
 
 ## Contributing
 
