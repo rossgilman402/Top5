@@ -27,6 +27,17 @@ const resolvers = {
     getMessages: async () => {
       return Message.find({});
     },
+    featuredPlaylist: async () => {
+      const count = Playlist.countDocuments();
+      const date = new Date();
+      const seed =
+        data.getFullYear() * 10000 +
+        (date.getMonth() + 1) * 100 +
+        data.getDate();
+      const random = Math.floor(seed % count);
+      const playlist = await Playlist.findOne().skip(random);
+      return playlist;
+    },
   },
   Mutation: {
     addUser: async (parent, { email, password }) => {
