@@ -56,6 +56,13 @@ export const GET_FEATURED_PLAYLIST = gql`
         _id
         email
       }
+      songs {
+        _id
+        name
+        uri
+        artist
+        img
+      }
     }
   }
 `;

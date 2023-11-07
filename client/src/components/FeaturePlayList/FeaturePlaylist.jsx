@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_FEATURED_PLAYLIST } from '../../utils/query';
 import './featuredPlaylist.css';
 
 const FeaturePlaylist = () => {
-  const playlist = ['Featured Playlist of the Day'];
+  const { loading, error, data } = useQuery(GET_FEATURED_PLAYLIST);
+  console.log('DATAAA', data);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error!</div>;
+
+  const playlist = data.featuredPlaylist;
+
+  // const playlist = ['Featured Playlist of the Day'];
   return (
     <>
       <div className="featured-container">
@@ -27,8 +36,8 @@ const FeaturePlaylist = () => {
             alt="song-art"
           />
           <div className="playlist-info">
-            <h4 className="playlist-title">{playlist}</h4>
-            <p className="user">user</p>
+            <h4 className="playlist-title">{playlist.name}</h4>
+            <p className="user">{playlist.user.email}</p>
             {/* <h5 className="duration">playlist.length</h5> */}
           </div>
         </div>
