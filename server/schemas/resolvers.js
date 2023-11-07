@@ -1,31 +1,31 @@
-const { User, Playlist, Song, Message } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth.js');
+const { User, Playlist, Song, Message } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth.js");
 
 const resolvers = {
   Query: {
     getUsers: async (_, args, context) => {
       if (context.user) {
-        return User.find({}).populate('playlists');
+        return User.find({}).populate("playlists");
       }
     },
     getPlaylists: async () => {
-      return Playlist.find({}).populate('songs').populate({ path: 'user' });
+      return Playlist.find({}).populate("songs").populate({ path: "user" });
     },
     getSingleUser: async (_, { userId }) => {
       return User.findOne({ _id: userId })
-        .populate('playlists')
-        .populate({ path: 'playlists', populate: 'songs' });
+        .populate("playlists")
+        .populate({ path: "playlists", populate: "songs" });
     },
     getSinglePlaylist: async (_, { playlistId }) => {
       return Playlist.findOne({ _id: playlistId })
-        .populate('songs')
-        .populate({ path: 'user' });
+        .populate("songs")
+        .populate({ path: "user" });
     },
     getSingleSong: async (_, { songId }) => {
       return Song.findOne({ _id: songId });
     },
     getMessages: async () => {
-      return Message.find({});
+      return Message.find({}).populate("user");
     },
     featuredPlaylist: async () => {
       const count = await Playlist.countDocuments();
@@ -37,9 +37,9 @@ const resolvers = {
       const random = Math.floor(seed % count);
       const playlist = await Playlist.findOne()
         .skip(random)
-        .populate('user')
-        .populate('songs');
-      console.log('PLAYLISTTT', playlist);
+        .populate("user")
+        .populate("songs");
+      console.log("PLAYLISTTT", playlist);
       return playlist;
     },
   },
@@ -100,22 +100,22 @@ const resolvers = {
           name,
           user: context.user._id,
         });
-        console.log('new playlist', newPlaylist.songs);
+        console.log("new playlist", newPlaylist.songs);
         //add our songs to the playlist
         for (const song of songs) {
           const newSong = await Song.create({ ...song });
           newPlaylist.songs.push(newSong._id);
           await newPlaylist.save();
         }
-        const populatedPlaylist = await newPlaylist.populate('songs');
-        console.log('populated', populatedPlaylist);
-        console.log('context user', context.user._id);
+        const populatedPlaylist = await newPlaylist.populate("songs");
+        console.log("populated", populatedPlaylist);
+        console.log("context user", context.user._id);
         const user = await User.findOne({ _id: context.user._id });
-        console.log('USER', user);
+        console.log("USER", user);
 
         user.playlists.push(newPlaylist._id);
         await user.save();
-        console.log('user', user);
+        console.log("user", user);
 
         //add the playlist to a user
         return populatedPlaylist;
@@ -127,19 +127,20 @@ const resolvers = {
       const { user } = context;
       console.log(text, user._id);
       if (!user) {
-        throw new Error('Authentication required to create a message');
+        throw new Error("Authentication required to create a message");
       }
+      const newUser = await User.findOne({ _id: user._id });
 
-      const message = new Message({ text });
+      const message = new Message({ text, user: newUser._id });
       console.log(message);
 
-      const newUser = await User.findByIdAndUpdate(user._id, {
-        $push: { messages: message },
-      });
+      newUser.messages.push(message);
+      await newUser.save();
       console.log(newUser);
 
       await message.save();
-      return message;
+      const response = await message.populate("user");
+      return response;
     },
   },
 };
