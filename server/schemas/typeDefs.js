@@ -4,6 +4,7 @@ const typeDefs = `
     email: String!
     password: String!
     playlists: [Playlist]
+    messages: [Message]
   }
 
   type Playlist {
@@ -24,8 +25,8 @@ const typeDefs = `
 
   type Message {
     _id: ID!
-    text: String!
-    user: User!
+    text: String
+    user: User
   }
 
   type Auth {
@@ -62,7 +63,7 @@ const typeDefs = `
     addPlaylist(name: String): Playlist
     addPlaylistWithSongs(name: String!, songs: [SongInput]): Playlist
     addSong(name: String, uri: String): Song
-    createMessage(text: String!): Message
+    createMessage(text: String): Message
   }
 `;
 

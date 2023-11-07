@@ -39,3 +39,17 @@ export const ADD_PLAYLIST = gql`
     }
   }
 `;
+
+export const ADD_MESSAGE = gql`
+  mutation Mutation($text: String!) {
+    createMessage(text: $text) {
+      _id
+      text
+      user {
+        _id
+        email
+        password
+      }
+    }
+  }
+`;
