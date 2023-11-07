@@ -47,3 +47,15 @@ export const GET_USER_EMAIL = gql`
     }
   }
 `;
+
+export const GET_FEATURED_PLAYLIST = gql`
+  query GetFeaturedPlaylist {
+    featuredPlaylist {
+      name
+      user {
+        _id
+        email
+      }
+    }
+  }
+`;
