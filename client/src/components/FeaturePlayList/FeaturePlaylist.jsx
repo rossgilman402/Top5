@@ -18,7 +18,7 @@ const FeaturePlaylist = () => {
           </Link>
         </div>
       </div>
-      <Link to="/Playlist">
+      <Link to="/Playlist" style={{ 'text-decoration': 'none', width: '50%' }}>
         <div className="playlist-details">
           {/* <img src={song.artworkUrl} alt={song.name} /> */}
           <img
@@ -29,7 +29,7 @@ const FeaturePlaylist = () => {
           <div className="playlist-info">
             <h4 className="playlist-title">{playlist}</h4>
             <p className="user">user</p>
-            <h5 className="duration">playlist.length</h5>
+            {/* <h5 className="duration">playlist.length</h5> */}
           </div>
         </div>
       </Link>

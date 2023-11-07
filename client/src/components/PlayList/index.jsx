@@ -1,9 +1,9 @@
-import Navbar from "../Navbar/Navbar";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_SINGLE_PLAYLIST } from "../../utils/query";
+import Navbar from '../Navbar/Navbar';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_SINGLE_PLAYLIST } from '../../utils/query';
 
-import "./PlayList.css";
+import './PlayList.css';
 const PlayList = () => {
   // const songs = [
   //   "Good Song",
@@ -26,13 +26,17 @@ const PlayList = () => {
       {/* <container className="playlist-card"> */}
       <div className="playlist">
         <h1>{title}</h1>
-        <img src={songs && songs[0].img} alt="song picture"></img>
+        <img
+          className="playlist-img"
+          src={songs && songs[0].img}
+          alt="song picture"
+        ></img>
         {songs &&
           songs.map((song, index) => (
             <div key={index} className="details">
               <Link to={`playlist-page`}> </Link>
               {/* <img src={song.artworkUrl} alt={song.name} /> */}
-              <img src={song.img} alt="song picture"></img>
+              <img className="song-img" src={song.img} alt="song picture"></img>
               <div className="song-info">
                 <h4 className="song">{song.name}</h4>
                 <p className="artist">{song.artist}</p>
